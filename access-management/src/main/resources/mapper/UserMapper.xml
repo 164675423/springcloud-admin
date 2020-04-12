@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zh.am.dao.UserMapper">
+
+    <select id="getLoginUser" resultType="com.zh.am.authentication.LoginUser">
+        select id,name,username from user where status = 1 and id = #{userId}
+    </select>
+    <select id="getAllUsers" resultMap="userRolesMap">
+        select u.id as userId,u.name,u.username,u.status,u.readonly from user u
+        <where>
+            <if test="input.name != null and input.name !=''">
+                and u.name like concat('%',#{input.name},'%')
+            </if>
+            <if test="input.status != null">
+                and u.status = #{input.status}
+            </if>
+            <if test="input.roleId != null and input.roleId != ''">
+                and exists(select 1 from user_role ur inner join role r on r.id = ur.role_id where ur.user_id = u.id and
+                r.id = #{input.roleId})
+            </if>
+        </where>
+        <choose>
+            <when test="sortField != null and sortField != ''">
+                order by ${sortField}
+                <if test="isDesc == true">
+                    desc
+                </if>
+            </when>
+        </choose>
+    </select>
+
+    <resultMap id="userRolesMap" type="com.zh.am.dto.user.GetUsersOutput">
+        <id column="userId" property="id"></id>
+        <collection property="roles" ofType="com.zh.am.dto.common.IdName" select="rolesSql" column="userId"/>
+    </resultMap>
+    <select id="rolesSql" resultType="com.zh.am.dto.common.IdName">
+        select id,name from role r inner join user_role ur on ur.role_id = r.id where ur.user_id = #{userId}
+    </select>
+</mapper>

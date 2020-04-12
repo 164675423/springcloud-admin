@@ -1,0 +1,8 @@
+:local(.card_margin) {
+    margin-bottom: 16px;
+}
+
+:local(.tag-display) {
+    cursor: text;
+    font-size: 14px;
+}

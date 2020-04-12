@@ -1,0 +1,59 @@
+spring:
+  application:
+    name: gateway
+  datasource:
+    url: jdbc:mysql://rm-2zefmq87x5r426x16uo.mysql.rds.aliyuncs.com:3306/access_management?useSSL=false&characterEncoding=UTF-8
+    username: am
+    password: am2020-2099
+    driver-class-name: com.mysql.jdbc.Driver
+    tomcat:
+      min-idle: 2
+      test-while-idle: true
+      test-on-borrow: true
+      time-between-eviction-runs-millis: 10000
+      min-evictable-idle-time-millis: 55000
+      validation-interval: 34000
+      validation-query: SELECT 1
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false #是否与服务注册于发现组件进行结合，通过 serviceId 转发到具体的服务实例。默认为 false，设为 true 便开启通过服务中心的自动根据 serviceId 创建路由的功能
+      routes:
+        - id: accessManagement
+          uri: lb://accessManagement
+          predicates:
+            - Path=/am/api/**
+          filters:
+            - StripPrefix=1
+  mvc:
+    dispatch-options-request: true
+server:
+  port: 9000
+eureka:
+  client:
+    service-url:
+      defaultZone: http://118.178.254.170:8000/eureka/
+    registry-fetch-interval-seconds: 3
+  instance:
+    lease-expiration-duration-in-seconds: 9
+    lease-renewal-interval-in-seconds: 3
+#打开actuator所有监控点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+#jwt
+security:
+  oauth2:
+    resource:
+      jwt:
+        key-value: e868af84623e7d8a969c155059db797d
+        expire-minutes: 30
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
+logging:
+  level:
+    root: info
+    com.zh.gateway: debug

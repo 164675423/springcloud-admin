@@ -1,0 +1,56 @@
+.ant-collapse-borderless > .ant-collapse-item:last-of-type {
+    border-bottom: none
+}
+
+.tag-font-big {
+    font-size: 14px !important;
+}
+
+.ant-card .ant-card.page-opt {
+    border-radius: 4px;
+}
+
+.ant-card .selected {
+    border-color: #1890ff;
+}
+
+.ant-card .selected:hover {
+    box-shadow: 0 1px 6px #1890ff !important;
+}
+
+.ant-card .selected .ant-card-head {
+    border-bottom-color: #1890ff
+}
+
+.ant-card .selected .ant-card-head .ant-card-head-title {
+    color: #1890ff;
+}
+
+.ant-row.page-opt + .ant-row.page-opt {
+    border-top: 1px solid #e9e9e9
+}
+
+.page-opt .ant-tag {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.ant-row.page-opt div:first-child .ant-tag-checkable-checked  {
+    color: #1890ff;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.ant-row.page-opt .ant-tag-checkable:not(.ant-tag-checkable-checked):hover {
+    color: rgba(0, 0, 0, 0.65);
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.hover-display-area .hover-display {
+    display: none;
+}
+
+.hover-display-area:hover .hover-display {
+    display: inline-block;
+}

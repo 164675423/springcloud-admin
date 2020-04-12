@@ -1,0 +1,24 @@
+logging:
+  level:
+    root: info
+    com.zh.am: debug
+spring:
+  profiles:
+    active: dev
+  application:
+    # spring cloud gateway中,不支持下划线的形式  see https://github.com/spring-projects/spring-framework/issues/24439
+    name: accessManagement
+  http:
+    encoding:
+      charset: utf-8
+      force: true
+      enabled: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*.xml
+security:
+  oauth2:
+    resource:
+      jwt:
+        key-value: e868af84623e7d8a969c155059db797d

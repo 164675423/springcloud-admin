@@ -1,0 +1,171 @@
+/* 重写 ant-form-item 表单域间距 原为 margin-bottom: 24px; */
+.form-standard .ant-form-item {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+/* 源自 antd 内对 form 标签内的 ant-input-group textarea 的样式重写 */
+/* 使用 form-standard 代替 form 标签 */
+.form-standard :not(.ant-input-group-wrapper) > .ant-input-group,
+.form-standard .ant-input-group-wrapper {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+.form-standard textarea.ant-input {
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+/* form-standard 中使用按钮、按钮组时的样式重写 */
+.form-standard .ant-row .ant-btn {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+.form-standard .ant-row .ant-input-group .ant-btn {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.form-standard > .ant-btn:not(.ant-input-search-button),
+.form-standard :not(.ant-btn-group) > .ant-btn:not(.ant-input-search-button),
+.form-standard .ant-btn-group {
+    margin-left: 0px;
+    margin-right: 8px;
+}
+.form-standard .col-align-right > .ant-btn:not(.ant-input-search-button),
+.form-standard .col-align-right :not(.ant-btn-group) > .ant-btn:not(.ant-input-search-button),
+.form-standard .col-align-right .ant-btn-group {
+    margin-left: 8px;
+    margin-right: 0;
+}
+
+/* 其他 antd 表单元素在 form-standard 下的样式重写 */
+.form-standard .ant-tag {
+    font-size: 14px;
+    margin: 4px 4px 4px 0;
+}
+.form-standard .ant-select {
+    width: 100%;
+}
+.form-standard .ant-input-number {
+    width: 100%;
+}
+.form-standard .ant-calendar-picker {
+    width: 100%
+}
+.history-popover .ant-popover-inner {
+    overflow-y: auto;
+    margin: 0 6px 6px 6px;
+    max-height: 38.2vh;
+    width: 38.2vw;
+}
+
+.history-popover .ant-row {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+}
+
+.history-popover .row-hover .hover-display {
+    display: none;
+}
+
+.history-popover .row-hover:hover .hover-display {
+    display: block;
+}
+
+.ant-row .col-align-right {
+    text-align: right;
+}
+
+.ant-row :not(.ant-pagination-options) > .ant-select {
+    width: 100%;
+}
+
+.ant-row .ant-input-number {
+    width: 100%;
+}
+
+/* Table class: white-space-nowrap 单元格内数据不换行*/
+.ant-table-wrapper.white-space-nowrap table, .ant-table-wrapper.white-space-nowrap td, .ant-table-wrapper.white-space-nowrap th {
+    white-space: nowrap;
+}
+
+/* Table class: ellipsis 表格单元格内容过长时用省略号表示*/
+.ant-table-wrapper.ellipsis table td {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+/* Table.Column class: ellipsis 单元格内容过长时用省略号表示*/
+.ant-table-wrapper td.ellipsis {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+/* Table.Column class: editable 单元格可编辑 */
+.ant-table-wrapper td.editable {
+    cursor: pointer;
+}
+
+/* Table.Column class: align-right 单元格内容右对齐展示 */
+.ant-table-wrapper td.align-right, .ant-table-wrapper th.align-right {
+    text-align: right;
+}
+
+/* Table.Column class: align-center 单元格内容居中展示 */
+.ant-table-wrapper td.align-center, .ant-table-wrapper th.align-center {
+    text-align: center;
+}
+
+/* Table rowClassName: row-selected 选中行标记颜色 */
+.ant-table-wrapper tr.row-selected {
+    background-color: #f3f3be;
+}
+
+/* antd css cover, bug fix*/
+/* 表头合并，最后一个单元格右侧边框丢失 */
+.ant-table-small.ant-table-bordered .ant-table-thead > tr:last-child > th:last-child {
+    border-right: 1px solid #e8e8e8
+}
+
+/* 没有使用表头固定，宽度足够的情况下，避免出现横向滚动条 */
+.ant-table-body {
+    overflow-x: auto !important
+}
+
+/*
+    antd DescriptionList title 使用 Row 时被其样式
+    .antd-pro-description-list-descriptionList .ant-row {margin-bottom: -16px}
+    影响造成间距出现问题，在此处覆盖消除影响
+*/
+.antd-pro-description-list-descriptionList .antd-pro-description-list-title .ant-row {
+    margin-bottom: 0;
+}
+
+/* Antd 3.13.6 版本升级，Form.Item 没有子元素时，Grid 布局显示异常 */
+.ant-form-item-control {
+    line-height: 39.9999px !important;
+}
+
+/* Card 间隔 16px，此处示例为上下间隔，根据业务界面可补充左右间隔 */
+.ant-card {
+    margin: 16px 0
+}
+/* Card 内边距，左右24px，上下16px */
+.ant-card-wider-padding .ant-card-head {
+    padding: 0 24px
+}
+.ant-card-wider-padding .ant-card-body {
+    padding: 16px 24px
+}
+
+/* 返回按钮 */
+.page-toolbar {
+    position: absolute;
+    top: 20px;
+    right: 44px;
+}
