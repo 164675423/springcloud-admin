@@ -1,0 +1,181 @@
+swagger: '2.0'
+info:
+  title: "用户权限管理"
+  description: ""
+  version: "1.0.0"
+host: localhost:3000
+schemes:
+  - https
+basePath: /api/v1
+produces:
+  - application/json
+paths:
+  /users/me/password:
+    put:
+      summary: 修改当前登录人员的密码
+      tags:
+        - currentUser
+      parameters:
+        - in: body
+          name: passwordInfo
+          description: 密码信息
+          schema:
+            type: object
+            required:
+              - oldPassword
+              - newPassword
+            properties:
+              oldPassword:
+                type: string
+                description: 旧的密码
+              newPassword:
+                type: string
+                description: 新密码
+      responses:
+        200: 
+          description: OK    
+  /users/me/pages:
+    get:
+      summary: 获取当前用户可访问的菜单项
+      tags:
+        - currentUser
+      responses:
+        200:
+          description: 成功返回用户可访问的菜单项
+          schema:
+            type: object
+            required:
+              - payload
+            properties:
+              message:
+                type: string
+              payload:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - title
+                  properties:
+                    icon:
+                      type: string
+                      description: 图标
+                    title:
+                      type: string
+                      description: 标题
+                    pinyin:
+                      type: string
+                      description: 标题的拼音
+                    initial:
+                      type: string
+                      description: 标题的拼音首字母
+                    url:
+                      type: string
+                    items:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                          - title
+                        properties:
+                          icon:
+                            type: string
+                          iconType:
+                            type: integer
+                            description: &icon-type-description |
+                              1 - font
+                              2 - url
+                            enum: [1, 2]
+                          title:
+                            type: string
+                          pinyin:
+                            type: string
+                            description: 标题的拼音
+                          initial:
+                            type: string
+                            description: 标题的拼音首字母
+                          url:
+                            type: string
+  /users/me/operations:
+    get:
+      summary: 获取当前用户可操作的按钮
+      tags:
+        - currentUser
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            required:
+              - payload
+            properties:
+              message:
+                type: string
+              payload:
+                type: object
+                properties: 
+                  code: 
+                    type: string
+                    description: 界面code
+                  operations:
+                    type: array
+                    items:
+                      type: string
+                      description: 业务操作
+                    example:
+                      - editable
+parameters:
+  PageSize:
+    name: pageSize
+    in: query
+    description: 每页数据量
+    type: integer
+    default: 20
+    minimum: 10
+  PageIndex:
+    name: pageIndex
+    in: query
+    description: 指定页
+    type: integer
+    default: 0
+    minimum: 0
+  SortField:
+    name: sortField
+    in: query
+    description: 排序字段
+    type: string
+    default: createTime
+  IsDesc:
+    name: isDesc
+    in: query
+    description: 倒序排列
+    type: boolean
+    default: false
+    allowEmptyValue: true
+responses:
+  Standard400ErrorResponse:
+    description: 失败.
+    schema:
+      required:
+        - errorCode
+        - message
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+  Standard200SuccessResponse:
+    description: 成功.
+    schema:
+      required:
+        - message
+      properties:
+        message:
+          type: string
+  Standard201SuccessResponse:
+    description: 成功创建.
+    schema:
+      required:
+        - message
+      properties:
+        message:
+          type: string

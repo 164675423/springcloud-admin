@@ -1,0 +1,423 @@
+swagger: '2.0'
+info:
+  title: "角色管理"
+  description: ""
+  version: "1.0.0"
+host: localhost:3000
+schemes:
+  - https
+basePath: /api/v1
+produces:
+  - application/json
+paths:
+  /roles:
+    get:
+      summary: 获取角色列表
+      tags:
+        - roles
+      parameters:
+        - in: query
+          name: status
+          type: integer
+      responses:
+        200:
+          description: 角色列表
+          schema:
+            type: object
+            required:
+              - payload
+            properties:
+              message:
+                type: string
+              payload:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - id
+                    - name
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    options:
+                      type: array
+                      items:
+                        type: string
+                        description: 
+                          update  - 是否可编辑
+                          abandon - 是否可作废
+    post:
+      summary: 新增角色
+      tags:
+        - roles
+      parameters:
+        - in: body
+          name: role
+          description: 角色
+          required: true
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              operations:
+                type: array
+                items:
+                  type: string
+                  description: 业务操作Id
+              pages:
+                type: array
+                description: 可访问的页面
+                items:
+                  type: string
+                  description: 页面Id
+      responses:
+        201:
+          description: Created
+  /roles/{id}:
+    put:
+      summary: 修改角色
+      tags:
+        - roles
+      parameters:
+        - in: path
+          name: id
+          description: 角色Id
+          required: true
+          type: string
+        - in: body
+          name: role
+          description: 角色
+          required: true
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                description: 角色名称
+              operations:
+                type: array
+                items:
+                  type: string
+                  description: 业务操作Id
+              pages:
+                type: array
+                description: 可访问的页面
+                items:
+                  type: string
+                  description: 页面Id
+      responses:
+        200:
+          description: OK
+    get:
+      summary: 获取角色详情
+      tags:
+        - roles
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: 角色Id
+      responses:
+        200:
+          description: 权限列表
+          schema:
+            type: object
+            required:
+              - payload
+            properties:
+              message:
+                type: string
+              payload:
+                type: object
+                required:
+                  - permissions
+                properties:
+                  id:
+                    type: string
+                    description: 角色id
+                  name:
+                    type: string
+                    description: 角色名
+                  options:
+                    type: array
+                    items:
+                      type: string
+                      description: 
+                        update    - 是否可编辑
+                        abandon - 是否可作废
+                  permissions:
+                    description: 角色对应的权限，为了方便在界面展示，以page层次结构返回
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - id
+                        - name
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        items:
+                          type: array
+                          items:
+                            properties:
+                              id:
+                                type: string
+                              name:
+                                type: string
+                              operations:
+                                type: array
+                                items:
+                                  $ref: '#/definitions/Permission'
+  /roles/{id}/info:
+    put:
+      summary: 修改角色权限以外的信息
+      tags:
+        - roles
+      parameters:
+        - in: path
+          name: id
+          description: 角色id
+          required: true
+          type: string
+        - in: body
+          name: role
+          description: 角色
+          required: true
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                description: 角色名称
+      responses:
+        200:
+          description: OK
+  /roles/{id}/abandon:
+    put:
+      summary: 作废角色
+      tags:
+        - roles
+      parameters:
+        - in: path
+          name: id
+          description: 角色id
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+  /pages:
+    get:
+      summary: 获取当前用户可访问的page列表
+      parameters:
+        - in: query
+          name: maxLevel
+          type: integer
+          description: 最大层级
+      tags:
+        - pages
+      responses:
+        200:
+          description: page列表
+          schema:
+            type: object
+            required:
+              - payload
+            properties:
+              message:
+                type: string
+              payload:
+                type: array
+                items:
+                  $ref: '#/definitions/PageList'
+  /pages/{id}:
+    get:
+      summary: 获取当前用户可访问page详情
+      description: 当前页面的子页面和业务操作的信息
+      tags:
+        - pages
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          required: true
+      responses:
+        200:
+          description: 业务操作列表
+          schema:
+            type: object
+            required:
+              - payload
+            properties:
+              message:
+                type: string
+              payload:
+                type: object
+                required:
+                  - id
+                  - name
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/definitions/PageListIncludePermission'
+                  operations:
+                    type: array
+                    items:
+                      $ref: '#/definitions/Permission'
+definitions:
+  Paging:
+    description: 分页信息
+    required:
+      - totalElements
+    properties:
+      pageIndex:
+        type: integer
+        format: int32
+        description: 当前页码
+      pageSize:
+        type: integer
+        format: int32
+        description: 每页显示数量
+      sort:
+        $ref: '#/definitions/Sort'
+      totalElements:
+        type: integer
+        format: int64
+        description: 总命中条数
+        minimum: 0
+      totalPages:
+        type: integer
+        format: int32
+        description: 总命中页数
+  Sort:
+    type: object
+    description: 排序方式 ASC生序 DESC降序
+  Permission:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+  PageList:
+    description: page列表
+    required:
+      - id
+      - name
+    properties:
+      id:
+        type: string
+        description: pageId
+      name:
+        type: string
+        description: page名字
+      items:
+        type: array
+        items:
+          properties:
+            id:
+              type: string
+              description: pageId
+            name:
+              type: string
+              description: page名字
+            operationCount:
+              type: integer
+              description: 包含的业务操作个数，用来控制页面上page树的勾选状态
+            itemCount:
+              type: integer
+              description: 子节点数，用来控制页面上page树的勾选状态
+  PageListIncludePermission:
+    description: 返回page及其对应的业务操作
+    properties:
+      id:
+        type: string
+        description: pageId
+      name:
+        type: string
+        description: page名字
+      items:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+      operations:
+        type: array
+        items:
+          properties:
+            id:
+              type: string
+              description: 业务操作Id
+            name:
+              type: string
+              description: 业务操作名称
+parameters:
+  PageSize:
+    name: pageSize
+    in: query
+    description: 每页数据量
+    type: integer
+    default: 20
+    minimum: 10
+  PageIndex:
+    name: pageIndex
+    in: query
+    description: 指定页
+    type: integer
+    default: 0
+    minimum: 0
+  SortField:
+    name: sortField
+    in: query
+    description: 排序字段
+    type: string
+    default: createTime
+  IsDesc:
+    name: isDesc
+    in: query
+    description: 倒序排列
+    type: boolean
+    default: false
+    allowEmptyValue: true
+responses:
+  Standard400ErrorResponse:
+    description: 失败.
+    schema:
+      required:
+        - errorCode
+        - message
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+  Standard200SuccessResponse:
+    description: 成功.
+    schema:
+      required:
+        - message
+      properties:
+        message:
+          type: string
+  Standard201SuccessResponse:
+    description: 成功创建.
+    schema:
+      required:
+        - message
+      properties:
+        message:
+          type: string

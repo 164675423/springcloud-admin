@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zh.am.dao.OperationMapper">
+
+    <select id="getUserOperations" resultMap="userOperationMap">
+        select distinct pa.id,pa.code,u.id as userId from `user` u
+        inner join user_role ur on u.id=ur.user_id
+        inner join role r on ur.role_id=r.id
+        inner join permission p on p.role_id =r.id
+        inner join page pa on pa.id = p.related_id
+        where u.`status`=1 and p.related_type=1 and u.id = #{userId}
+    </select>
+
+    <resultMap id="userOperationMap" type="com.zh.am.dto.operation.GetUserOperationsDto">
+        <collection property="operations" ofType="string" column="{id=id,userId=userId}"
+                    select="operationDetailSql"></collection>
+    </resultMap>
+
+    <select id="operationDetailSql" resultType="java.lang.String">
+        select pa.code from user_role ur
+        inner join role r on ur.role_id=r.id
+        inner join permission p on p.role_id =r.id
+        inner join operation pa on pa.id = p.related_id where p.related_type=2 and ur.user_id = #{userId} and pa.page_id=#{id}
+    </select>
+
+    <select id="getOperationByRole" resultType="com.zh.am.entity.Operation">
+       SELECT op.* FROM role r INNER JOIN permission p ON r.id=p.role_id INNER JOIN operation op ON p.related_id=op.id WHERE p.related_type=2
+        AND r.id=#{roleId}
+    </select>
+</mapper>

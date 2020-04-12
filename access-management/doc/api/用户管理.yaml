@@ -1,0 +1,351 @@
+swagger: '2.0'
+info:
+  title: "用户管理"
+  description: ""
+  version: "1.0.0"
+host: localhost:3000
+schemes:
+  - https
+basePath: /api/v1
+produces:
+  - application/json
+paths:
+  /ui/user/init:
+    get:
+      summary: 用户管理初始化
+      tags:
+        - ui
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            required:
+              - payload
+            properties:
+              message:
+                type: string
+              payload:
+                type: object
+                properties:
+                  roles:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                        - id
+                        - name
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+  /users:
+    get:
+      summary: 根据条件查询用户信息
+      tags:
+        - users
+      parameters:
+        - name: name
+          type: string
+          in: query
+          description: 用户姓名
+        - in: query
+          name: roleId
+          type: array
+          items:
+            type: string
+          collectionFormat: pipes
+          description: 角色Id
+        - in: query
+          name: status
+          type: integer
+          description: &user-status-description |
+            -1 - 作废
+            1 - 有效
+          enum: [-1, 1]
+        - $ref: '#/parameters/PageSize'
+        - $ref: '#/parameters/PageIndex'
+        - $ref: '#/parameters/SortField'
+        - $ref: '#/parameters/IsDesc'
+      responses:
+        200:
+          description: 用户信息列表
+          schema:
+            type: object
+            required:
+              - payload
+            properties:
+              message:
+                type: string
+              payload:
+                type: object
+                allOf:
+                  - type: object
+                    required:
+                      - content
+                    properties:
+                      content:
+                        type: array
+                        items:
+                          type: object
+                          required:
+                            - id
+                          properties:
+                            id:
+                              type: string
+                            name:
+                              type: string
+                            username:
+                              type: string
+                            status:
+                              type: integer
+                            roles:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                  name:
+                                    type: string
+                            options:
+                              type: array
+                              items:
+                                type: string
+                                description: &user-options-description |
+                                  update  - 编辑
+                                  abandon - 作废
+                                  resetPwd - 重置密码
+                              enum: ["update","abandon","resetPwd"]
+                  - $ref: '#/definitions/Paging'
+    post:
+      summary: 新增用户
+      tags:
+        - users
+      parameters:
+        - in: body
+          name: user
+          description: 用户信息
+          schema:
+            type: object
+            required:
+              - name
+              - username
+              - password
+            properties:
+              name:
+                type: string
+              username:
+                type: string
+              password:
+                type: string
+              roles:
+                type: array
+                items:
+                  type: string
+                  description: 角色Id
+      responses:
+        200:
+          description: Created
+  /users/{id}:
+    get:
+      summary: 用户详细信息
+      tags:
+        - users
+      parameters:
+        - name: id
+          type: string
+          in: path
+          required: true
+          description: 用户Id
+      responses:
+        200:
+          description: OK
+          schema:
+            type: object
+            required:
+              - payload
+            properties:
+              message:
+                type: string
+              payload:
+                type: object
+                required:
+                  - id
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  username:
+                    type: string
+                  status:
+                    type: integer
+                    description: 状态
+                  roles:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                  options:
+                    type: array
+                    items:
+                      type: string
+                      description:
+                        update  - 编辑
+                        abandon   - 作废
+                        resetPwd    - 重置密码
+    put:
+      summary: 修改
+      tags:
+        - users
+      parameters:
+        - in: path
+          name: id
+          description: 用户id
+          type: string
+          required: true
+        - in: body
+          name: user
+          description: 用户信息
+          required: true
+          schema:
+            type: object
+            required:
+              - name
+            properties:
+              name:
+                type: string
+              roles:
+                type: array
+                items:
+                  type: string
+                  description: 角色id
+      responses:
+        200:
+          description: OK
+  /users/{id}/password/reset:
+    put:
+      summary: 重置用户密码
+      tags:
+        - users
+      parameters:
+        - in: path
+          name: id
+          description: 用户id
+          type: string
+          required: true
+        - in: body
+          name: passwordInfo
+          description: 密码信息
+          schema:
+            type: object
+            required:
+              - password
+            properties:
+              password:
+                type: string
+                description: 密码
+      responses:
+          '200':
+           $ref: '#/responses/Standard200SuccessResponse'
+          '400':
+           $ref: '#/responses/Standard400ErrorResponse'
+  /users/{id}/abandon:
+    put:
+      summary: 作废用户
+      tags:
+        - users
+      parameters:
+        - in: path
+          name: id
+          description: 用户id
+          type: string
+          required: true
+      responses:
+        200:
+          description: Ok
+definitions:
+  Paging:
+    description: 分页信息
+    required:
+      - totalElements
+    properties:
+      pageIndex:
+        type: integer
+        format: int32
+        description: 当前页码
+      pageSize:
+        type: integer
+        format: int32
+        description: 每页显示数量
+      totalElements:
+        type: integer
+        format: int64
+        description: 总命中条数
+        minimum: 0
+      totalPages:
+        type: integer
+        format: int32
+        description: 总命中页数
+parameters:
+  PageSize:
+    name: pageSize
+    in: query
+    description: 每页数据量
+    type: integer
+    default: 20
+    minimum: 10
+  PageIndex:
+    name: pageIndex
+    in: query
+    description: 指定页
+    type: integer
+    default: 0
+    minimum: 0
+  SortField:
+    name: sortField
+    in: query
+    description: 排序字段
+    type: string
+    default: createTime
+  IsDesc:
+    name: isDesc
+    in: query
+    description: 倒序排列
+    type: boolean
+    default: false
+    allowEmptyValue: true
+responses:
+  Standard400ErrorResponse:
+    description: 失败.
+    schema:
+      required:
+        - errorCode
+        - message
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+  Standard200SuccessResponse:
+    description: 成功.
+    schema:
+      required:
+        - message
+      properties:
+        message:
+          type: string
+  Standard201SuccessResponse:
+    description: 成功创建.
+    schema:
+      required:
+        - message
+      properties:
+        message:
+          type: string
