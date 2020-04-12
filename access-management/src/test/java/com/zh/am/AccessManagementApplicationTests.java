@@ -9,7 +9,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -17,10 +16,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -29,8 +26,6 @@ import java.util.stream.Stream;
 public class AccessManagementApplicationTests {
   @Autowired
   private StringRedisTemplate stringRedisTemplate;
-  @Autowired
-  private RedisTemplate redisTemplate;
   @Autowired
   private ObjectMapper objectMapper;
   @Autowired
@@ -58,35 +53,6 @@ public class AccessManagementApplicationTests {
     String s2 = redisService.get("users");
     List<User> userList = JacksonUtils.parseList(s2, User.class);
     userList.forEach(System.out::println);
-  }
-
-  @Test
-  public void redisTemplate() throws IOException {
-    //string
-    redisTemplate.opsForValue().set("am", "测试数据");
-    redisTemplate.expire("am", 10, TimeUnit.MINUTES);
-    Object am = redisTemplate.opsForValue().get("am");
-    System.out.println(am);
-
-    //object
-    com.zh.am.entity.User user = new com.zh.am.entity.User();
-    user.setName("zh_test");
-    user.setCreateTime(new Date());
-    redisTemplate.opsForValue().set("am_test", user);
-    redisTemplate.expire("am_test", 10, TimeUnit.MINUTES);
-    User am_test = (User) redisTemplate.opsForValue().get("am_test");
-    System.out.println(am_test);
-
-    //list
-    List<User> users = new ArrayList<>();
-    users.add(new User("一", "aph", 20));
-    users.add(new User("二", "bob", 10));
-    users.add(new User("二", "cold", 40));
-    users.add(new User("三", "fri", 22));
-
-    redisTemplate.opsForValue().set("list", users);
-    List<User> list = (List<User>) redisTemplate.opsForValue().get("list");
-    list.forEach(r -> System.out.println(r));
   }
 
   @Test

@@ -1,0 +1,18 @@
+.container {
+  background-color: #F0F2F5;
+  
+  [class='breadcrumb-container'] {
+    padding: 0px 0px 10px 0px;
+    background: #FFF;
+  }
+
+  [class*="children-container"] {
+    margin: 0px;
+    padding: 0px;
+    min-height: 10px;
+  }
+
+  [class*="show-background-color"] {
+    background-color: #ffffff;
+  }
+}

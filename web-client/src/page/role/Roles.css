@@ -1,0 +1,22 @@
+:local(.editIcon) {
+    margin-left: 20px;
+}
+:local(.editInput) {
+    max-width: 80%;
+}
+:local(.editCell) {
+    cursor: pointer;
+    width: 80%;
+}
+:local(.btnMr) {
+    margin-right: 8px;
+}
+
+:local(.page-overflow) {
+    height: calc(100vh - 237px);
+    overflow-y: auto;
+}
+
+:local(.detail) input[value=""].required {
+    border-color: red;
+}

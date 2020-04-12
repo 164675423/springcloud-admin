@@ -1,6 +1,5 @@
 package com.zh.gateway.authentication.auth;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.codec.Base64;
 import org.springframework.security.crypto.keygen.BytesKeyGenerator;
 import org.springframework.security.crypto.keygen.KeyGenerators;
@@ -77,25 +76,21 @@ public class PasswordEncoderImpl implements PasswordEncoder {
 
   @Override
   public boolean matches(CharSequence rawPassword, String encodedPassword) {
-    if (encodedPassword.startsWith("$2a")) {
-      return new BCryptPasswordEncoder(12).matches(rawPassword, encodedPassword);
-    } else {
-      byte[] digested = Base64.decode(encodedPassword.getBytes());
-      if (digested[0] == DEFAULT_VERSION) {
-        int keyDerivationPrf = readNetworkByteOrder(digested, 1);
-        int iterations = readNetworkByteOrder(digested, 5);
-        int saltLength = readNetworkByteOrder(digested, 9);
+    byte[] digested = Base64.decode(encodedPassword.getBytes());
+    if (digested[0] == DEFAULT_VERSION) {
+      int keyDerivationPrf = readNetworkByteOrder(digested, 1);
+      int iterations = readNetworkByteOrder(digested, 5);
+      int saltLength = readNetworkByteOrder(digested, 9);
 
-        if (keyDerivationPrf != KEY_DERIVATION_PRF || saltLength < 128 / 8) {
-          return false;
-        }
-
-        byte[] salt = subArray(digested, 13, 13 + saltLength);
-        byte[] subKey = subArray(digested, 13 + saltLength, digested.length);
-        return Arrays.equals(subKey, encode(rawPassword, salt, iterations, subKey.length));
-      } else {
+      if (keyDerivationPrf != KEY_DERIVATION_PRF || saltLength < 128 / 8) {
         return false;
       }
+
+      byte[] salt = subArray(digested, 13, 13 + saltLength);
+      byte[] subKey = subArray(digested, 13 + saltLength, digested.length);
+      return Arrays.equals(subKey, encode(rawPassword, salt, iterations, subKey.length));
+    } else {
+      return false;
     }
   }
 }
