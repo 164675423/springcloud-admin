@@ -25,6 +25,15 @@ spring:
         min-idle: 0 # 连接池中的最小空闲连接
         max-active: 8 # 连接池最大连接数（使用负值表示没有限制）
         max-wait: -1ms # 连接池最大阻塞等待时间（使用负值表示没有限制）
+  kafka:
+    bootstrap-servers: 111.229.165.30:9092
+    consumer:
+      group-id: am
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      enable-auto-commit: false
+    producer:
+      retries: 3 # 重试次数
 eureka:
   client:
     service-url:
@@ -38,3 +47,7 @@ management:
     web:
       exposure:
         include: '*'
+application:
+  kafka:
+    topics:
+      user: dev-am-user

@@ -3,6 +3,7 @@ package com.zh.am;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zh.am.dto.page.GetPageOutput;
 import com.zh.am.dto.role.OperationDto;
+import com.zh.am.mq.producer.IUserProducer;
 import com.zh.am.redis.IRedisService;
 import com.zh.am.util.JacksonUtils;
 import org.junit.Test;
@@ -30,6 +31,18 @@ public class AccessManagementApplicationTests {
   private ObjectMapper objectMapper;
   @Autowired
   private IRedisService redisService;
+  @Autowired
+  private IUserProducer userProducer;
+
+  @Test
+  public void kafka() {
+    com.zh.am.entity.User user = new com.zh.am.entity.User();
+    user.setId("1");
+    user.setName("z");
+    user.setUsername("zh");
+    user.setReadonly(true);
+    userProducer.addOrUpdateUser(user);
+  }
 
   @Test
   public void stringRedisTemplate() throws IOException {
