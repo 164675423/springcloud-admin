@@ -31,7 +31,7 @@ spring:
       group-id: am
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      enable-auto-commit: false
+      enable-auto-commit: true
     producer:
       retries: 3 # 重试次数
 eureka:
