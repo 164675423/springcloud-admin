@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.Date;
 
 public class File implements Serializable {
@@ -21,7 +20,7 @@ public class File implements Serializable {
 
   private String contentType;
 
-  private BigInteger size;
+  private Long size;
 
   private Date createTime;
 
@@ -65,11 +64,11 @@ public class File implements Serializable {
     this.contentType = contentType;
   }
 
-  public BigInteger getSize() {
+  public Long getSize() {
     return size;
   }
 
-  public void setSize(BigInteger size) {
+  public void setSize(Long size) {
     this.size = size;
   }
 

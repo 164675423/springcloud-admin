@@ -14,6 +14,8 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 集成swagger ui的相关配置
@@ -41,8 +43,15 @@ public class SwaggerConfig {
         .apiInfo(new ApiInfoBuilder()
             .title(appName)
             .build())
+        .consumes(getAllContentTypes())
         .genericModelSubstitutes(ResponseBodyWrapper.class)
         .directModelSubstitute(LocalDateTime.class, String.class);
   }
 
+  private Set<String> getAllContentTypes() {
+    Set<String> consumes = new HashSet<>();
+    // Add other media types if required in future
+    consumes.add("multipart/form-data");
+    return consumes;
+  }
 }

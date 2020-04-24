@@ -1,14 +1,32 @@
 package com.zh.storage.domain.vo;
 
-import java.io.FileInputStream;
-import java.math.BigInteger;
+import java.io.InputStream;
 
 public class FileVO {
   private String fileId;
   private String fileName;
-  private FileInputStream fileInputStream;
   private String contentType;
-  private BigInteger size;
+  private Long size;
+
+  private InputStream inputStream;
+
+  public FileVO() {
+  }
+
+  public FileVO(String fileId, String fileName, String contentType, Long size) {
+    this.fileId = fileId;
+    this.fileName = fileName;
+    this.contentType = contentType;
+    this.size = size;
+  }
+
+  public InputStream getInputStream() {
+    return inputStream;
+  }
+
+  public void setInputStream(InputStream inputStream) {
+    this.inputStream = inputStream;
+  }
 
   public String getContentType() {
     return contentType;
@@ -18,20 +36,12 @@ public class FileVO {
     this.contentType = contentType;
   }
 
-  public BigInteger getSize() {
+  public Long getSize() {
     return size;
   }
 
-  public void setSize(BigInteger size) {
+  public void setSize(Long size) {
     this.size = size;
-  }
-
-  public FileInputStream getFileInputStream() {
-    return fileInputStream;
-  }
-
-  public void setFileInputStream(FileInputStream fileInputStream) {
-    this.fileInputStream = fileInputStream;
   }
 
   public String getFileId() {

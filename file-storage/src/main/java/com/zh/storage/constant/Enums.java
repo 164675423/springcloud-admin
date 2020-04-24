@@ -1,10 +1,10 @@
 package com.zh.storage.constant;
 
-public final class Enums {
+public class Enums {
   // 文件类型
   public enum FileType {
     Temp(1),
-    Domain(-1);
+    Domain(2);
 
     private int index;
 

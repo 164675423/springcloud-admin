@@ -1,6 +1,5 @@
 package com.zh.storage.domain.dto;
 
-import java.math.BigInteger;
 import java.util.Date;
 
 public class FileDTO {
@@ -14,7 +13,7 @@ public class FileDTO {
 
   private String contentType;
 
-  private BigInteger size;
+  private Long size;
 
   private Date createTime;
 
@@ -58,11 +57,11 @@ public class FileDTO {
     this.contentType = contentType;
   }
 
-  public BigInteger getSize() {
+  public Long getSize() {
     return size;
   }
 
-  public void setSize(BigInteger size) {
+  public void setSize(Long size) {
     this.size = size;
   }
 
