@@ -31,4 +31,4 @@ file:
   storage:
     type: Local
     local:
-      root-directory: E:/file_storage/
+      root-directory: F:/file_storage/

@@ -9,7 +9,12 @@ spring:
     name: fileStorage
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
+  servlet:
+    multipart:
+      max-request-size: 20MB
+      max-file-size: 5MB
 mybatis-plus:
   mapper-locations: classpath:/mapper/*.xml
+
 
 

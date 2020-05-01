@@ -54,7 +54,7 @@ public class FileController {
     headers.setContentType(contentType);
     headers.setContentLength(file.getSize());
     headers.set(HttpHeaders.CONTENT_DISPOSITION, getAttachmentValue(file.getFileName()));
-    return new ResponseEntity(new InputStreamResource(file.getInputStream()), headers, HttpStatus.OK);
+    return new ResponseEntity<>(new InputStreamResource(file.getInputStream()), headers, HttpStatus.OK);
   }
 
   /**
@@ -84,23 +84,24 @@ public class FileController {
    * @return
    * @throws IOException
    */
+
   @ApiOperation(value = "上传文件信息")
   @PostMapping
-  public ResponseBodyWrapper<?> uploadFiles(@RequestParam(value = "type", required = false) Integer type,
-                                            @RequestParam(value = "file") MultipartFile... files) throws IOException {
+  public ResponseBodyWrapper<List<FileVO>> uploadFiles(@RequestParam(value = "type", required = false) Integer type,
+                                                       @RequestParam(value = "file") MultipartFile... files) throws IOException {
     if (files.length == 0) {
       throw new BusinessException("上传的文件不可为空");
     }
     if (type == null) {
       type = Enums.FileType.Domain.getIndex();
     }
-    fileStorageService.addFiles(type, files);
-    return new ResponseBodyWrapper("success");
+    List<FileVO> fileVOS = fileStorageService.addFiles(type, files);
+    return new ResponseBodyWrapper<>(fileVOS);
   }
 
   @ApiOperation(value = "删除文件")
   @DeleteMapping("{id}")
-  public ResponseBodyWrapper delete(@PathVariable String id) throws IOException {
+  public ResponseBodyWrapper delete(@PathVariable String... id) throws IOException {
     fileStorageService.deleteFiles(id);
     return new ResponseBodyWrapper("success");
   }

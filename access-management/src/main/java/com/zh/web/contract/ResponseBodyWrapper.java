@@ -4,6 +4,9 @@ public class ResponseBodyWrapper<T> {
   private String message;
   private T payload;
 
+  public ResponseBodyWrapper() {
+  }
+
   public ResponseBodyWrapper(String message) {
     this.message = message;
   }
