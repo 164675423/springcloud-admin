@@ -29,11 +29,11 @@
         </choose>
     </select>
 
-    <resultMap id="userRolesMap" type="com.zh.am.dto.user.GetUsersOutput">
+    <resultMap id="userRolesMap" type="com.zh.am.domain.dto.user.GetUsersOutput">
         <id column="userId" property="id"></id>
-        <collection property="roles" ofType="com.zh.am.dto.common.IdName" select="rolesSql" column="userId"/>
+        <collection property="roles" ofType="com.zh.am.domain.dto.common.IdName" select="rolesSql" column="userId"/>
     </resultMap>
-    <select id="rolesSql" resultType="com.zh.am.dto.common.IdName">
+    <select id="rolesSql" resultType="com.zh.am.domain.dto.common.IdName">
         select id,name from role r inner join user_role ur on ur.role_id = r.id where ur.user_id = #{userId}
     </select>
 </mapper>

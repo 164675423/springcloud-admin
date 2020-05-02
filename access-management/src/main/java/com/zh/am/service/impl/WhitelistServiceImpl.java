@@ -2,7 +2,7 @@ package com.zh.am.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zh.am.dao.WhitelistMapper;
-import com.zh.am.entity.Whitelist;
+import com.zh.am.domain.entity.Whitelist;
 import com.zh.am.service.IWhitelistService;
 import org.springframework.stereotype.Service;
 

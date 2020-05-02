@@ -2,10 +2,10 @@ package com.zh.am.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zh.am.authentication.LoginUser;
-import com.zh.am.dto.common.IdName;
-import com.zh.am.dto.role.RoleDto;
-import com.zh.am.dto.role.SaveRoleDto;
-import com.zh.am.entity.Role;
+import com.zh.am.domain.dto.common.IdName;
+import com.zh.am.domain.dto.role.RoleDto;
+import com.zh.am.domain.dto.role.SaveRoleDto;
+import com.zh.am.domain.entity.Role;
 
 import java.util.List;
 

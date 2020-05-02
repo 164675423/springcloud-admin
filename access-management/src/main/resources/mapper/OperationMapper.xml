@@ -11,7 +11,7 @@
         where u.`status`=1 and p.related_type=1 and u.id = #{userId}
     </select>
 
-    <resultMap id="userOperationMap" type="com.zh.am.dto.operation.GetUserOperationsDto">
+    <resultMap id="userOperationMap" type="com.zh.am.domain.dto.operation.GetUserOperationsDto">
         <collection property="operations" ofType="string" column="{id=id,userId=userId}"
                     select="operationDetailSql"></collection>
     </resultMap>
@@ -23,7 +23,7 @@
         inner join operation pa on pa.id = p.related_id where p.related_type=2 and ur.user_id = #{userId} and pa.page_id=#{id}
     </select>
 
-    <select id="getOperationByRole" resultType="com.zh.am.entity.Operation">
+    <select id="getOperationByRole" resultType="com.zh.am.domain.entity.Operation">
        SELECT op.* FROM role r INNER JOIN permission p ON r.id=p.role_id INNER JOIN operation op ON p.related_id=op.id WHERE p.related_type=2
         AND r.id=#{roleId}
     </select>

@@ -1,16 +1,16 @@
 package com.zh.am.api;
 
 import com.zh.am.authentication.LoginUser;
+import com.zh.am.common.contract.ResponseBodyWrapper;
 import com.zh.am.constant.Enums;
-import com.zh.am.dto.page.GetPageOutput;
-import com.zh.am.dto.role.RoleDto;
-import com.zh.am.dto.role.RoleVo;
-import com.zh.am.dto.role.SaveRoleDto;
-import com.zh.am.mapStruct.PageMapStruct;
-import com.zh.am.mapStruct.RoleMapStruct;
+import com.zh.am.domain.dto.page.GetPageOutput;
+import com.zh.am.domain.dto.role.RoleDto;
+import com.zh.am.domain.dto.role.RoleVo;
+import com.zh.am.domain.dto.role.SaveRoleDto;
+import com.zh.am.domain.mapStruct.PageMapStruct;
+import com.zh.am.domain.mapStruct.RoleMapStruct;
 import com.zh.am.service.IPageService;
 import com.zh.am.service.IRoleService;
-import com.zh.web.contract.ResponseBodyWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.validation.annotation.Validated;

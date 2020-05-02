@@ -7,14 +7,14 @@ import com.zh.am.constant.Enums;
 import com.zh.am.dao.PageMapper;
 import com.zh.am.dao.PermissionMapper;
 import com.zh.am.dao.RoleMapper;
-import com.zh.am.dto.common.IdName;
-import com.zh.am.dto.role.RoleDto;
-import com.zh.am.dto.role.SaveRoleDto;
-import com.zh.am.entity.Page;
-import com.zh.am.entity.Permission;
-import com.zh.am.entity.Role;
+import com.zh.am.domain.dto.common.IdName;
+import com.zh.am.domain.dto.role.RoleDto;
+import com.zh.am.domain.dto.role.SaveRoleDto;
+import com.zh.am.domain.entity.Page;
+import com.zh.am.domain.entity.Permission;
+import com.zh.am.domain.entity.Role;
+import com.zh.am.domain.mapStruct.RoleMapStruct;
 import com.zh.am.exception.BusinessException;
-import com.zh.am.mapStruct.RoleMapStruct;
 import com.zh.am.service.IRoleService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -63,10 +63,12 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
 
   private Role validateRole(String roleId) {
     Role role = roleMapper.selectById(roleId);
-    if (role == null)
+    if (role == null) {
       throw new BusinessException("该角色不存在");
-    if (role.getReadonly())
+    }
+    if (role.getReadonly()) {
       throw new BusinessException("该角色不允许编辑");
+    }
     return role;
   }
 
@@ -164,8 +166,9 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
       ArrayList<String> list = new ArrayList<>();
       for (String page : pages) {
         Page dbPage = allPages.stream().filter(r -> r.getId().equals(page)).findAny().orElse(null);
-        if (dbPage == null)
+        if (dbPage == null) {
           throw new BusinessException("page不存在");
+        }
         list.add(dbPage.getId());
         if (StringUtils.isNotBlank(dbPage.getParentId())) {
           addParentPage(allPages, dbPage.getParentId(), list);
@@ -182,12 +185,15 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
   }
 
   private void addParentPage(List<Page> allPages, String parentId, List<String> parentIds) {
-    if (parentIds == null)
+    if (parentIds == null) {
       parentIds = new ArrayList<>();
+    }
     Page parent = allPages.stream().filter(r -> r.getId().equals(parentId)).findAny().orElse(null);
-    if (parent != null)
+    if (parent != null) {
       parentIds.add(parent.getId());
-    if (StringUtils.isNotBlank(parent.getParentId()))
+    }
+    if (StringUtils.isNotBlank(parent.getParentId())) {
       addParentPage(allPages, parent.getParentId(), parentIds);
+    }
   }
 }

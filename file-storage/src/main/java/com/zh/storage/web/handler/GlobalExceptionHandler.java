@@ -18,6 +18,7 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler(value = {BusinessException.class, DataValidationException.class})
   public ResponseEntity<ErrorInfo> exceptionHandler(RuntimeException e) {
+    e.printStackTrace();
     if (e instanceof BusinessException) {
       BusinessException exception = (BusinessException) e;
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorInfo(exception.getCode(), exception.getMessage()));

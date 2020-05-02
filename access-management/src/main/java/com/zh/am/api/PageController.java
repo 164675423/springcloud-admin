@@ -1,12 +1,12 @@
 package com.zh.am.api;
 
 import com.zh.am.authentication.LoginUser;
-import com.zh.am.dto.page.GetPageOutput;
-import com.zh.am.dto.page.PageDetailsVO;
-import com.zh.am.dto.page.PageVo;
-import com.zh.am.mapStruct.PageMapStruct;
+import com.zh.am.common.contract.ResponseBodyWrapper;
+import com.zh.am.domain.dto.page.GetPageOutput;
+import com.zh.am.domain.dto.page.PageDetailsVO;
+import com.zh.am.domain.dto.page.PageVo;
+import com.zh.am.domain.mapStruct.PageMapStruct;
 import com.zh.am.service.IPageService;
-import com.zh.web.contract.ResponseBodyWrapper;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

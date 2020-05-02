@@ -2,9 +2,9 @@ package com.zh.am.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.zh.am.authentication.LoginUser;
-import com.zh.am.dto.user.GetUsersInput;
-import com.zh.am.dto.user.GetUsersOutput;
-import com.zh.am.entity.User;
+import com.zh.am.domain.dto.user.GetUsersInput;
+import com.zh.am.domain.dto.user.GetUsersOutput;
+import com.zh.am.domain.entity.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

@@ -2,8 +2,8 @@ package com.zh.am.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zh.am.dao.OperationMapper;
-import com.zh.am.dto.operation.GetUserOperationsDto;
-import com.zh.am.entity.Operation;
+import com.zh.am.domain.dto.operation.GetUserOperationsDto;
+import com.zh.am.domain.entity.Operation;
 import com.zh.am.service.IOperationService;
 import org.springframework.stereotype.Service;
 

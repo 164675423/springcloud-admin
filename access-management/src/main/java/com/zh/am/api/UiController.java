@@ -1,7 +1,7 @@
 package com.zh.am.api;
 
+import com.zh.am.common.contract.ResponseBodyWrapper;
 import com.zh.am.service.IRoleService;
-import com.zh.web.contract.ResponseBodyWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,6 +1,7 @@
 package com.zh.am.api;
 
-import com.zh.web.contract.ResponseBodyWrapper;
+import com.zh.am.common.contract.ResponseBodyWrapper;
+import com.zh.am.feignClient.FileStorageClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("internal/api/v1/internal")
 public class InternalController {
+  private final FileStorageClient fileStorageClient;
+
+  public InternalController(FileStorageClient fileStorageClient) {
+    this.fileStorageClient = fileStorageClient;
+  }
+
   @GetMapping
   public ResponseBodyWrapper internal() {
     return ResponseBodyWrapper.from("internal api");

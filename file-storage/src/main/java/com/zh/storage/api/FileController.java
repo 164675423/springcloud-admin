@@ -5,7 +5,7 @@ import com.zh.storage.constant.Enums;
 import com.zh.storage.domain.vo.FileVO;
 import com.zh.storage.exception.BusinessException;
 import com.zh.storage.service.FileStorageService;
-import com.zh.web.contract.ResponseBodyWrapper;
+import com.zh.storage.web.contract.ResponseBodyWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.core.io.InputStreamResource;

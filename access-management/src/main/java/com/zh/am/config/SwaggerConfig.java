@@ -2,7 +2,7 @@ package com.zh.am.config;
 
 import com.google.common.collect.Lists;
 import com.zh.am.authentication.LoginUser;
-import com.zh.web.contract.ResponseBodyWrapper;
+import com.zh.am.common.contract.ResponseBodyWrapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

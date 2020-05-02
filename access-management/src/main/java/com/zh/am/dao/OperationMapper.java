@@ -1,8 +1,8 @@
 package com.zh.am.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.zh.am.dto.operation.GetUserOperationsDto;
-import com.zh.am.entity.Operation;
+import com.zh.am.domain.dto.operation.GetUserOperationsDto;
+import com.zh.am.domain.entity.Operation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 

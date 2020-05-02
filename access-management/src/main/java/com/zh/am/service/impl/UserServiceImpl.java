@@ -11,17 +11,17 @@ import com.zh.am.constant.Enums;
 import com.zh.am.dao.RoleMapper;
 import com.zh.am.dao.UserMapper;
 import com.zh.am.dao.UserRoleMapper;
-import com.zh.am.dto.common.IdName;
-import com.zh.am.dto.user.GetUsersInput;
-import com.zh.am.dto.user.GetUsersOutput;
-import com.zh.am.dto.user.InsertUserDto;
-import com.zh.am.dto.user.UpdatePasswordDto;
-import com.zh.am.dto.user.UpdateUserDto;
-import com.zh.am.entity.Role;
-import com.zh.am.entity.User;
-import com.zh.am.entity.UserRole;
+import com.zh.am.domain.dto.common.IdName;
+import com.zh.am.domain.dto.user.GetUsersInput;
+import com.zh.am.domain.dto.user.GetUsersOutput;
+import com.zh.am.domain.dto.user.InsertUserDto;
+import com.zh.am.domain.dto.user.UpdatePasswordDto;
+import com.zh.am.domain.dto.user.UpdateUserDto;
+import com.zh.am.domain.entity.Role;
+import com.zh.am.domain.entity.User;
+import com.zh.am.domain.entity.UserRole;
+import com.zh.am.domain.mapStruct.UserMapStruct;
 import com.zh.am.exception.BusinessException;
-import com.zh.am.mapStruct.UserMapStruct;
 import com.zh.am.service.IUserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -58,8 +58,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     if (userMapper.selectCount(wrapper) > 0) {
       throw new BusinessException("用户名已存在");
     }
-    if (input.getRoles() == null || input.getRoles().size() == 0)
+    if (input.getRoles() == null || input.getRoles().size() == 0) {
       throw new BusinessException("角色不可为空");
+    }
     User user = new User();
     user.setId(UUID.randomUUID().toString());
     user.setName(input.getName());
@@ -81,8 +82,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         .in(Role::getId, roleIds));
     roleIds.forEach(roleId -> {
       Role role = roles.stream().filter(pre -> pre.getId().equalsIgnoreCase(roleId)).findAny().orElse(null);
-      if (role == null)
+      if (role == null) {
         throw new BusinessException("角色不存在或已作废");
+      }
       UserRole userRole = new UserRole();
       userRole.setRoleId(roleId);
       userRole.setUserId(user.getId());
@@ -94,10 +96,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
   @Transactional
   public void update(String userId, UpdateUserDto input, LoginUser loginUser) {
     User user = userMapper.selectById(userId);
-    if (user == null)
+    if (user == null) {
       throw new BusinessException("用户不存在");
-    if (input.getRoles().size() == 0)
+    }
+    if (input.getRoles().size() == 0) {
       throw new BusinessException("角色不能为空");
+    }
     user.setName(input.getName());
     user.setModifierId(loginUser.getId());
     user.setModifierName(loginUser.getName());

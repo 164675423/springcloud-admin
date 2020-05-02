@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zh.storage.dao.FileMapper;
 import com.zh.storage.domain.vo.FileVO;
 import com.zh.storage.entity.File;
+import com.zh.storage.exception.DataValidationException;
 import com.zh.storage.service.FileStorageService;
 import com.zh.storage.service.StorageProvider;
 import org.springframework.stereotype.Service;
@@ -57,7 +58,7 @@ public class FileStorageServiceImpl extends ServiceImpl<FileMapper, File> implem
     for (String id : ids) {
       File file = fileMapper.selectById(id);
       if (file == null) {
-        throw new FileNotFoundException("file not found");
+        throw new DataValidationException("file not found");
       }
       InputStream stream = storageProvider.getFile(file.getLocation());
       FileVO fileVO = new FileVO();
