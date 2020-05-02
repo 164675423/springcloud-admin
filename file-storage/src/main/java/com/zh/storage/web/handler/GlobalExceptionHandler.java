@@ -1,11 +1,11 @@
-package com.zh.web.handler;
+package com.zh.storage.web.handler;
 
 import com.zh.storage.exception.BusinessException;
 import com.zh.storage.exception.DataValidationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
  * 抛出的businessException,统一处理为http status 400
@@ -13,17 +13,28 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
  * @author zh
  * @date 2020/1/3 11:29
  */
-@ControllerAdvice
+@RestControllerAdvice
 public class GlobalExceptionHandler {
 
   @ExceptionHandler(value = {BusinessException.class, DataValidationException.class})
-  public ResponseEntity<ErrorInfo> exceptionHandler(BusinessException e) {
-    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorInfo(e.getCode(), e.getMessage()));
+  public ResponseEntity<ErrorInfo> exceptionHandler(RuntimeException e) {
+    if (e instanceof BusinessException) {
+      BusinessException exception = (BusinessException) e;
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorInfo(exception.getCode(), exception.getMessage()));
+    } else if (e instanceof DataValidationException) {
+      DataValidationException exception = (DataValidationException) e;
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorInfo(exception.getCode(), exception.getMessage()));
+    }
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorInfo(e.getMessage()));
   }
 
   protected class ErrorInfo {
     private String Code;
     private String message;
+
+    public ErrorInfo(String message) {
+      this.message = message;
+    }
 
     public ErrorInfo(String code, String message) {
       Code = code;

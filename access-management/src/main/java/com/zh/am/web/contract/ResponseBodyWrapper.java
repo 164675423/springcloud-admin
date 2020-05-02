@@ -1,4 +1,4 @@
-package com.zh.web.contract;
+package com.zh.am.web.contract;
 
 public class ResponseBodyWrapper<T> {
   private String message;
