@@ -1,8 +1,10 @@
 package com.zh.am.feignClient;
 
 import com.zh.am.common.FileData;
+import com.zh.am.common.contract.ResponseBodyWrapper;
 import com.zh.am.config.FileStorageClientConfig;
-import com.zh.web.contract.ResponseBodyWrapper;
+import com.zh.am.exception.DataValidationException;
+import com.zh.am.feignClient.fallback.FileStorageFallbackFactory;
 import feign.Response;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -20,12 +22,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@FeignClient(name = "fileStorage", configuration = {FileStorageClientConfig.class})
+@FeignClient(name = "fileStorage", configuration = FileStorageClientConfig.class, fallbackFactory = FileStorageFallbackFactory.class)
 public interface FileStorageClient {
   /**
    * 获取文件
@@ -39,18 +42,21 @@ public interface FileStorageClient {
   default FileData getFileStream(String id) throws IOException {
     Response response = getFile(id);
     if (response == null) {
-      throw new IllegalArgumentException("文件服务未返回文件");
+      throw new DataValidationException("文件服务未返回文件");
     }
     Map<String, Collection<String>> headers = response.headers();
-    List<String> collect = headers.get(HttpHeaders.CONTENT_DISPOSITION).stream().collect(Collectors.toList());
+    List<String> collect = new ArrayList<>();
+    if (headers.get(HttpHeaders.CONTENT_DISPOSITION) != null) {
+      collect = headers.get(HttpHeaders.CONTENT_DISPOSITION).stream().collect(Collectors.toList());
+    }
     if (CollectionUtils.isEmpty(collect)) {
-      throw new IllegalArgumentException("文件服务返回的 response header 错误");
+      throw new DataValidationException("文件服务返回的 response header 错误");
     }
     String fileName;
     try {
       fileName = URLDecoder.decode(StringUtils.substringAfter(collect.get(0), "UTF-8''"), "UTF-8");
     } catch (UnsupportedEncodingException e) {
-      throw new IllegalArgumentException("文件服务返回文件名错误");
+      throw new DataValidationException("文件服务返回文件名错误");
     }
     InputStream stream = response.body().asInputStream();
     FileData fileData = new FileData();

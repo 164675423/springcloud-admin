@@ -2,6 +2,7 @@ package com.zh.am.config;
 
 import feign.codec.Decoder;
 import feign.codec.Encoder;
+import feign.codec.ErrorDecoder;
 import feign.jackson.JacksonDecoder;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
@@ -23,6 +24,11 @@ public class FileStorageClientConfig {
   @Bean
   public Decoder decoder() {
     return new JacksonDecoder();
+  }
+
+  @Bean
+  public ErrorDecoder errorDecoder() {
+    return new FeignErrorDecoder();
   }
 }
 
