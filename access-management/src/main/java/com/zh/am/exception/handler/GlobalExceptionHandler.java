@@ -1,5 +1,6 @@
 package com.zh.am.exception.handler;
 
+import com.netflix.hystrix.exception.HystrixBadRequestException;
 import com.zh.am.exception.BusinessException;
 import com.zh.am.exception.DataValidationException;
 import org.springframework.http.HttpStatus;
@@ -15,17 +16,18 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+  @ExceptionHandler(value = BusinessException.class)
+  public ResponseEntity<ErrorInfo> businessExceptionHandler(BusinessException e) {
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorInfo(e.getMessage()));
+  }
 
-  @ExceptionHandler(value = {BusinessException.class, DataValidationException.class})
-  public ResponseEntity<ErrorInfo> exceptionHandler(RuntimeException e) {
-    e.printStackTrace();
-    if (e instanceof BusinessException) {
-      BusinessException exception = (BusinessException) e;
-      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorInfo(exception.getCode(), exception.getMessage()));
-    } else if (e instanceof DataValidationException) {
-      DataValidationException exception = (DataValidationException) e;
-      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorInfo(exception.getCode(), exception.getMessage()));
-    }
+  @ExceptionHandler(value = DataValidationException.class)
+  public ResponseEntity<ErrorInfo> dataValidationExceptionHandler(DataValidationException e) {
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorInfo(e.getMessage()));
+  }
+
+  @ExceptionHandler(value = HystrixBadRequestException.class)
+  public ResponseEntity<ErrorInfo> hystrixBadRequestExceptionHandler(HystrixBadRequestException e) {
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorInfo(e.getMessage()));
   }
 

@@ -27,19 +27,13 @@ public class FileStorageFallbackFactory implements FallbackFactory<FileStorageCl
 
     return new FileStorageClient() {
       @Override
-      public ResponseBodyWrapper<String> getFileById(String id) {
-        logger.info("fall back");
-        return null;
-      }
-
-      @Override
       public Response getFile(String id) {
         logger.info("fall back");
         return null;
       }
 
       @Override
-      public ResponseBodyWrapper deleteFiles(String... id) {
+      public ResponseBodyWrapper<String> deleteFiles(String... id) {
         logger.info("fall back");
         return null;
       }

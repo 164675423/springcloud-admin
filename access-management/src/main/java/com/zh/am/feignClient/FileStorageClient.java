@@ -31,9 +31,6 @@ import java.util.stream.Collectors;
 @FeignClient(name = "fileStorage", configuration = FileStorageClientConfig.class,
     fallbackFactory = FileStorageFallbackFactory.class)
 public interface FileStorageClient {
-  @RequestMapping(method = RequestMethod.GET, value = "/api/v1/files/test/{id}")
-  ResponseBodyWrapper<String> getFileById(@PathVariable String id);
-
   /**
    * 获取文件
    *

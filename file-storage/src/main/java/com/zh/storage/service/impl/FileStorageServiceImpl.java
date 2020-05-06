@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -78,7 +77,7 @@ public class FileStorageServiceImpl extends ServiceImpl<FileMapper, File> implem
     for (String id : ids) {
       File file = fileMapper.selectById(id);
       if (file == null) {
-        throw new FileNotFoundException("file not found");
+        throw new DataValidationException("file not found");
       }
       fileMapper.deleteById(id);
       storageProvider.deleteFile(file.getLocation());
