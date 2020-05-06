@@ -58,3 +58,12 @@ feign:
         connectTimeout: 5000
         readTimeout: 60000
         loggerLevel: full
+  hystrix:
+    enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 120000

@@ -27,19 +27,26 @@ public class FileStorageFallbackFactory implements FallbackFactory<FileStorageCl
 
     return new FileStorageClient() {
       @Override
-      public Response getFile(String id) {
-        logger.error("getFile 调用失败,{}", throwable.getMessage());
+      public ResponseBodyWrapper<String> getFileById(String id) {
+        logger.info("fall back");
         return null;
       }
 
       @Override
-      public void deleteFiles(String... id) {
-        logger.error("deleteFiles 调用失败,{}", throwable.getMessage());
+      public Response getFile(String id) {
+        logger.info("fall back");
+        return null;
+      }
+
+      @Override
+      public ResponseBodyWrapper deleteFiles(String... id) {
+        logger.info("fall back");
+        return null;
       }
 
       @Override
       public ResponseBodyWrapper<List<FileData>> addFile(Integer type, MultipartFile... files) {
-        logger.error("addFile 调用失败,{}", throwable.getMessage());
+        logger.info("fall back");
         return null;
       }
     };

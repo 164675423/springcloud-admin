@@ -28,8 +28,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@FeignClient(name = "fileStorage", configuration = FileStorageClientConfig.class, fallbackFactory = FileStorageFallbackFactory.class)
+@FeignClient(name = "fileStorage", configuration = FileStorageClientConfig.class,
+    fallbackFactory = FileStorageFallbackFactory.class)
 public interface FileStorageClient {
+  @RequestMapping(method = RequestMethod.GET, value = "/api/v1/files/test/{id}")
+  ResponseBodyWrapper<String> getFileById(@PathVariable String id);
+
   /**
    * 获取文件
    *
@@ -72,7 +76,7 @@ public interface FileStorageClient {
    * @param id
    */
   @RequestMapping(method = RequestMethod.DELETE, value = "/api/v1/files/{id}")
-  void deleteFiles(@PathVariable String... id);
+  ResponseBodyWrapper<String> deleteFiles(@PathVariable String... id);
 
   /**
    * 新增文件

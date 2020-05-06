@@ -26,9 +26,5 @@ public class FileStorageClientConfig {
     return new JacksonDecoder();
   }
 
-  @Bean
-  public ErrorDecoder errorDecoder() {
-    return new FeignErrorDecoder();
-  }
 }
 

@@ -1,6 +1,7 @@
 package com.zh.am.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
@@ -9,7 +10,10 @@ import java.util.Map;
 import java.util.TimeZone;
 
 public class JacksonUtils {
-  private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper().setTimeZone(TimeZone.getTimeZone("GMT+8"));
+  private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper()
+      .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+      .configure(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_AS_NULL, true)
+      .setTimeZone(TimeZone.getTimeZone("GMT+8"));
 
   /**
    * object转换为json字符串
