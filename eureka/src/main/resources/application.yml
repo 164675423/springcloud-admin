@@ -8,7 +8,7 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: http://localhost:${server.port}/eureka/
+      defaultZone: http://127.0.0.1:${server.port}/eureka/
     # eureka client刷新本地缓存时间 默认30s
     registry-fetch-interval-seconds: 3
   server:
@@ -25,3 +25,6 @@ eureka:
     lease-expiration-duration-in-seconds: 9
     # 默认30s. 服务刷新时间配置，每隔这个时间会主动心跳一次
     lease-renewal-interval-in-seconds: 3
+    prefer-ip-address: true
+    ##注册到eurekaip地址
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}

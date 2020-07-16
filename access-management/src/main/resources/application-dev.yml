@@ -1,5 +1,3 @@
-server:
-  port: 9091
 spring:
   datasource:
     url: jdbc:mysql://rm-2zefmq87x5r426x16uo.mysql.rds.aliyuncs.com:3306/access_management?useSSL=false&characterEncoding=UTF-8
@@ -34,14 +32,23 @@ spring:
       enable-auto-commit: true
     producer:
       retries: 3 # 重试次数
+  boot:
+    admin:
+      client:
+        url: http://127.0.0.1:8769
+        instance:
+          prefer-ip: true
 eureka:
   client:
     service-url:
-      defaultZone: http://118.178.254.170:8001/eureka/
+      defaultZone: http://127.0.0.1:8000/eureka/
     registry-fetch-interval-seconds: 3
   instance:
     lease-expiration-duration-in-seconds: 9
     lease-renewal-interval-in-seconds: 3
+    hostname: ${spring.cloud.client.ip-address}
+    prefer-ip-address: true
+    instance-id: ${eureka.instance.hostname}:${spring.application.name}:${server.port}
 management:
   endpoints:
     web:
