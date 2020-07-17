@@ -32,14 +32,6 @@ spring:
       enable-auto-commit: true
     producer:
       retries: 3 # 重试次数
-  boot:
-    admin:
-      client:
-        url: http://172.26.11.197:8769
-        instance:
-          prefer-ip: true
-          # 使用自身ip
-          service-url: http://${spring.cloud.client.ip-address}:${server.port}
 eureka:
   client:
     service-url:
