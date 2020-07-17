@@ -93,7 +93,7 @@ public final class DefaultTokenService {
    */
   public Boolean shouldRefresh(Claims claims, long expiredMinutes) {
     long expireTime = claims.getExpiration().getTime();
-    long now = new Date().getTime();
+    long now = System.currentTimeMillis();
     return expireTime > now && (expireTime - now) / 1000 < ((expiredMinutes * 60) / 2);
   }
 

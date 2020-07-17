@@ -24,7 +24,7 @@ spring:
         max-active: 8 # 连接池最大连接数（使用负值表示没有限制）
         max-wait: -1ms # 连接池最大阻塞等待时间（使用负值表示没有限制）
   kafka:
-    bootstrap-servers: 111.229.165.30:9092
+    bootstrap-servers: 172.26.11.197:9092
     consumer:
       group-id: am
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
@@ -35,13 +35,15 @@ spring:
   boot:
     admin:
       client:
-        url: http://127.0.0.1:8769
+        url: http://172.26.11.197:8769
         instance:
           prefer-ip: true
+          # 使用自身ip
+          service-url: http://${spring.cloud.client.ip-address}:${server.port}
 eureka:
   client:
     service-url:
-      defaultZone: http://127.0.0.1:8000/eureka/
+      defaultZone: http://172.26.11.197:8000/eureka/
     registry-fetch-interval-seconds: 3
   instance:
     lease-expiration-duration-in-seconds: 9

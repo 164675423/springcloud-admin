@@ -177,6 +177,7 @@
         </dependencies>
     </dependencyManagement>
     <build>
+        <finalName>access-management</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

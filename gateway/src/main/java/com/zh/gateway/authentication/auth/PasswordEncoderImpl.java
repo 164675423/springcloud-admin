@@ -10,10 +10,12 @@ import javax.crypto.spec.PBEKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.security.GeneralSecurityException;
 import java.util.Arrays;
+import org.springframework.stereotype.Component;
 
 import static org.springframework.security.crypto.util.EncodingUtils.concatenate;
 import static org.springframework.security.crypto.util.EncodingUtils.subArray;
 
+@Component
 public class PasswordEncoderImpl implements PasswordEncoder {
   private static final String PBKDF2_ALGORITHM = "PBKDF2WithHmacSHA256";
   private static final int DEFAULT_SALT_SIZE = 128 / 8;

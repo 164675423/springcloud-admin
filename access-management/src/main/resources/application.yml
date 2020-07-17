@@ -43,8 +43,3 @@ feign:
           isolation:
             thread:
               timeoutInMilliseconds: 120000
-# kafka topics
-application:
-  kafka:
-    topics:
-      user: am-user
