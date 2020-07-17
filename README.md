@@ -11,6 +11,7 @@
 * eureka 为注册中心，进行服务发现与注册
 * gateway 为api网关入口，进行统一的身份认证及鉴权
 * file-storage 为文件服务，提供文件上传下载及存储功能
+* health 为健康检查项目，收集autuator参数
 * web-client 为前端展示项目 
 
 #### 如何运行
