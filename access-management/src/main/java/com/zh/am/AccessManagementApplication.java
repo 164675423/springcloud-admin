@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ServletComponentScan
 @EnableEurekaClient
 @EnableScheduling
-@EnableKafka
+//@EnableKafka
 @EnableFeignClients
 public class AccessManagementApplication {
 

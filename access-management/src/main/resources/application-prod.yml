@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://rm-2zefmq87x5r426x16uo.mysql.rds.aliyuncs.com:3306/access_management?useSSL=false&characterEncoding=UTF-8
+    url: jdbc:mysql://rm-2zefmq87x5r426x16uo.mysql.rds.aliyuncs.com:3306/access_management?useSSL=false&characterEncoding=UTF-8&useLocalSessionState=true
     username: am
     password: am2020-2099
     driver-class-name: com.mysql.jdbc.Driver

@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  * @author zh
  * @date 2020/4/15
  */
-@Configuration
+//@Configuration
 public class KafkaTopicConfig {
   private static final Integer DEFAULT_PARTITIONS = 5;
   private static final Short REPLICATION = 1;
