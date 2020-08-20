@@ -21,6 +21,8 @@ import com.baomidou.mybatisplus.generator.config.rules.FileType;
 import com.baomidou.mybatisplus.generator.config.rules.IColumnType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import sun.font.TextRecord;
+import sun.font.TrueTypeFont;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -34,7 +36,11 @@ import java.util.Scanner;
  * @date 2020/2/29
  */
 public class CodeGenerator {
-  private final static String BASE_PACKAGE = "com.zh.am";
+  private final static String BASE_PACKAGE = "com.zh.gen";
+  private final static String DB_URL = "jdbc:mysql://rm-2zefmq87x5r426x16uo.mysql.rds.aliyuncs.com:3306/access_management?useSSL=false&characterEncoding=UTF-8&useLocalSessionState=true";
+  private final static String DRIVER="com.mysql.jdbc.Driver";
+  private final static String USER_NAME="am";
+  private final static String PASSWORD="am2020-2099";
 
   /**
    * <p>
@@ -67,16 +73,15 @@ public class CodeGenerator {
     gc.setOpen(false);
     gc.setIdType(IdType.NONE);
     gc.setBaseResultMap(true);//生成的mapper xml增加baseResultMap
-    // gc.setSwagger2(true); 实体属性 Swagger2 注解
     mpg.setGlobalConfig(gc);
 
     // 数据源配置
     DataSourceConfig dsc = new DataSourceConfig();
-    dsc.setUrl("jdbc:mysql://localhost:3306/access_management?useSSL=false");
+    dsc.setUrl(DB_URL);
     // dsc.setSchemaName("public");
-    dsc.setDriverName("com.mysql.jdbc.Driver");
-    dsc.setUsername("root");
-    dsc.setPassword("root");
+    dsc.setDriverName(DRIVER);
+    dsc.setUsername(USER_NAME);
+    dsc.setPassword(PASSWORD);
     dsc.setTypeConvert(new MySqlTypeConvert() {
       @Override
       public IColumnType processTypeConvert(GlobalConfig globalConfig, String fieldType) {
@@ -161,7 +166,7 @@ public class CodeGenerator {
     strategy.setColumnNaming(NamingStrategy.underline_to_camel);
     strategy.setVersionFieldName("row_version");
 //    strategy.setSuperEntityClass("你自己的父类实体,没有就不用设置!");
-    strategy.setEntityLombokModel(false);
+    strategy.setEntityLombokModel(true);
     strategy.setRestControllerStyle(true);
     // 公共父类
 //    strategy.setSuperControllerClass("你自己的父类控制器,没有就不用设置!");

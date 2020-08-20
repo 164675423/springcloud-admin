@@ -6,7 +6,7 @@ import {emitUserDataEvent} from 'util/custom-event';
 //axios 全局配置
 axios.defaults.withCredentials = true;
 axios.defaults.crossDomain = true;
-// axios.defaults.baseURL = 'http://118.178.254.170';
+axios.defaults.baseURL = 'http://172.26.11.197/';
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
 axios.defaults.headers.put['Content-Type'] = 'application/json;charset=UTF-8';
 

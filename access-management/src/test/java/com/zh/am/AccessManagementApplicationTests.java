@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -36,12 +37,7 @@ public class AccessManagementApplicationTests {
 
   @Test
   public void kafka() {
-    com.zh.am.domain.entity.User user = new com.zh.am.domain.entity.User();
-    user.setId("1");
-    user.setName("z");
-    user.setUsername("zh");
-    user.setReadonly(true);
-    userProducer.addOrUpdateUser(user);
+    Math.round(100);
   }
 
   @Test
