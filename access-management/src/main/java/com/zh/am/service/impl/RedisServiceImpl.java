@@ -1,6 +1,6 @@
-package com.zh.am.redis.impl;
+package com.zh.am.service.impl;
 
-import com.zh.am.redis.IRedisService;
+import com.zh.am.service.IRedisService;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 

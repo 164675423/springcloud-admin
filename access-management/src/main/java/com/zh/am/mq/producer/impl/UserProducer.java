@@ -2,7 +2,7 @@ package com.zh.am.mq.producer.impl;
 
 import com.zh.am.domain.dto.user.UserMessage;
 import com.zh.am.domain.entity.User;
-import com.zh.am.exception.DataValidationException;
+import com.zh.am.common.exception.DataValidationException;
 import com.zh.am.mq.producer.IUserProducer;
 import com.zh.am.util.JacksonUtils;
 import org.slf4j.Logger;

@@ -2,7 +2,7 @@ package com.zh.am.api;
 
 import com.zh.am.authentication.LoginUser;
 import com.zh.am.common.contract.ResponseBodyWrapper;
-import com.zh.am.constant.Enums;
+import com.zh.am.common.constant.Enums;
 import com.zh.am.domain.dto.page.GetPageOutput;
 import com.zh.am.domain.dto.role.RoleDto;
 import com.zh.am.domain.dto.role.RoleVo;

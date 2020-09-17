@@ -1,4 +1,4 @@
-package com.zh.am.redis;
+package com.zh.am.service;
 
 /**
  * redis相关操作

@@ -1,4 +1,4 @@
-package com.zh.am.constant;
+package com.zh.am.common.constant;
 
 public final class Enums {
   // 基础数据状态

@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@MapperScan("com.zh.am.dao")
+@MapperScan("com.zh.am.domain.dao")
 public class MybatisPlusConfig {
   /**
    * mybatis plus的乐观锁插件

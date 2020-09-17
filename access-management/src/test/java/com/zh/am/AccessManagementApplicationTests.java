@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zh.am.domain.dto.page.GetPageOutput;
 import com.zh.am.domain.dto.role.OperationDto;
 import com.zh.am.mq.producer.IUserProducer;
-import com.zh.am.redis.IRedisService;
+import com.zh.am.service.IRedisService;
 import com.zh.am.util.JacksonUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +15,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

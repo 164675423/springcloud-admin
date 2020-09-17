@@ -1,12 +1,9 @@
 package com.zh.am.authentication;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.zh.am.dao.UserMapper;
+import com.zh.am.domain.dao.UserMapper;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.tomcat.util.json.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.json.JacksonJsonParser;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;

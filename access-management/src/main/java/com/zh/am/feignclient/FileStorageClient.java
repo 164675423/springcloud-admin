@@ -3,7 +3,7 @@ package com.zh.am.feignclient;
 import com.zh.am.common.FileData;
 import com.zh.am.common.contract.ResponseBodyWrapper;
 import com.zh.am.config.FileStorageClientConfig;
-import com.zh.am.exception.DataValidationException;
+import com.zh.am.common.exception.DataValidationException;
 import com.zh.am.feignclient.fallback.FileStorageFallbackFactory;
 import feign.Response;
 import org.apache.commons.lang3.StringUtils;

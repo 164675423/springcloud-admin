@@ -1,4 +1,4 @@
-package com.zh.am.exception;
+package com.zh.am.common.exception;
 
 public abstract class AbstractException extends RuntimeException {
   private static final long serialVersionUID = -4200762008865565990L;

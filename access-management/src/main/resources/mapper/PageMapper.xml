@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.zh.am.dao.PageMapper">
+<mapper namespace="com.zh.am.domain.dao.PageMapper">
 
     <select id="getPagesByUserId" resultType="com.zh.am.domain.entity.Page">
         select  DISTINCT pa.* from `user` u
