@@ -1,6 +1,6 @@
 package com.zh.am.feignclient;
 
-import com.zh.am.common.FileData;
+import com.zh.am.domain.dto.common.FileData;
 import com.zh.am.common.contract.ResponseBodyWrapper;
 import com.zh.am.config.FileStorageClientConfig;
 import com.zh.am.common.exception.DataValidationException;

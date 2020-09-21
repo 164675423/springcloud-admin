@@ -1,4 +1,4 @@
-package com.zh.am.common;
+package com.zh.am.domain.dto.common;
 
 import java.io.InputStream;
 

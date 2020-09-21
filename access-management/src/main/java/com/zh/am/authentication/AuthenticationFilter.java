@@ -1,5 +1,6 @@
 package com.zh.am.authentication;
 
+import com.zh.am.common.UserContext;
 import com.zh.am.domain.dao.UserMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -41,6 +42,8 @@ public class AuthenticationFilter extends OncePerRequestFilter {
         throw new IllegalStateException("未能获取到有效的用户信息，请退出重新登录");
       } else {
         httpServletRequest.setAttribute("user", loginUser);
+        //存放至ThreadLocal中
+        UserContext.setLoginUser(loginUser);
       }
     } else {
       throw new IllegalStateException("未能获取到有效的用户信息，请退出重新登录");
