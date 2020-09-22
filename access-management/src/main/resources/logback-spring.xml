@@ -21,6 +21,7 @@
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--文件路径,定义了日志的切分方式——把每一天的日志归档到一个文件中,以防止日志填满整个磁盘空间-->
             <FileNamePattern>${LOG_HOME}/${APP_NAME}/%d{yyyy-MM-dd}/info.log</FileNamePattern>
+            <maxHistory>30</maxHistory>
         </rollingPolicy>
         <!--日志输出编码格式化-->
         <encoder>
@@ -39,6 +40,7 @@
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--路径-->
             <FileNamePattern>${LOG_HOME}/${APP_NAME}/%d{yyyy-MM-dd}/error.log</FileNamePattern>
+            <maxHistory>30</maxHistory>
         </rollingPolicy>
         <!--日志输出编码格式化-->
         <encoder>
@@ -46,6 +48,7 @@
             <pattern>${FILE_LOG_PATTERN}</pattern>
         </encoder>
     </appender>
+
     <root level="INFO">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="fileInfoLog"/>

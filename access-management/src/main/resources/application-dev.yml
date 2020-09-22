@@ -68,3 +68,6 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 120000
+logging:
+  level:
+    com.zh.am: debug

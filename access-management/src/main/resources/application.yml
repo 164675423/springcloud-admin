@@ -3,7 +3,6 @@ server:
 logging:
   level:
     root: info
-    com.zh.am: debug
 spring:
   profiles:
     active: dev
