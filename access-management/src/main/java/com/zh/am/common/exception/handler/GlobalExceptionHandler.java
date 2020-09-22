@@ -31,6 +31,11 @@ public class GlobalExceptionHandler {
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorInfo(e.getMessage()));
   }
 
+  @ExceptionHandler(value = Exception.class)
+  public ResponseEntity<ErrorInfo> internalExceptionHandler(Exception e) {
+    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorInfo(e.getMessage()));
+  }
+
   protected class ErrorInfo {
     private String Code;
     private String message;

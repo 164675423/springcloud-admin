@@ -17,12 +17,9 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Component
 public class RequestListener implements ServletRequestListener {
-  private final Logger logger = LoggerFactory.getLogger(RequestListener.class);
 
   @Override
   public void requestDestroyed(ServletRequestEvent sre) {
-    HttpServletRequest request = (HttpServletRequest) sre.getServletRequest();
-    logger.info("当前线程 --- [{}] --- 销毁请求：{} 移除loginUser", Thread.currentThread().getId(), request.getRequestURI());
     UserContext.removeLoginUser();
   }
 
