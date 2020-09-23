@@ -30,8 +30,11 @@ spring:
 #      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 #      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 #      enable-auto-commit: false
+#      auto-offset-reset: earliest
+#      max-poll-records: 50
 #    producer:
 #      retries: 3 # 重试次数
+#      acks: all
 eureka:
   client:
     service-url:

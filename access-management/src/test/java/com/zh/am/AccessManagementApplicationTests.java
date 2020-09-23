@@ -36,7 +36,7 @@ public class AccessManagementApplicationTests {
 
   @Test
   public void kafka() {
-    Math.round(100);
+    userProducer.addOrUpdateUser(new com.zh.am.domain.entity.User());
   }
 
   @Test
