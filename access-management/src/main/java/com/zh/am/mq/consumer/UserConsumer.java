@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.nio.charset.Charset;
 
-//@Component
+@Component
 @Slf4j
 public class UserConsumer {
   private final Processor processor;
