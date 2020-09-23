@@ -35,6 +35,8 @@ spring:
 #    producer:
 #      retries: 3 # 重试次数
 #      acks: all
+#    listener:
+#      ack-mode: manual_immediate
 eureka:
   client:
     service-url:
