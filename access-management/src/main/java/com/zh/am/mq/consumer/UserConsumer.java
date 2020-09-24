@@ -1,6 +1,5 @@
 package com.zh.am.mq.consumer;
 
-import com.zh.am.common.exception.DataValidationException;
 import com.zh.am.domain.dao.WhitelistMapper;
 import com.zh.am.domain.dto.user.UserMessage;
 import com.zh.am.domain.entity.Whitelist;
@@ -25,15 +24,19 @@ public class UserConsumer {
     this.whitelistMapper = whitelistMapper;
   }
 
-  @KafkaListener(topics = "${application.kafka.topics.user}")
+  @KafkaListener(topics = "${application.kafka.consumer.topics.user}")
   @Transactional(rollbackFor = Exception.class)
   public void listen(ConsumerRecord<String, String> record, Acknowledgment ack) {
     String json = new String(record.value().getBytes(), Charset.forName("utf-8"));
+    log.info("kafka收到消息,key:{} ,value:{}", record.key(), json);
     try {
       UserMessage userMessage = JacksonUtils.parse(json, UserMessage.class);
-      log.info("kafka收到消息,key:{} ,value:{}", record.key(), record.value());
-      if (processor.valid(userMessage)) {
-        execute(userMessage);
+      //处理消息
+      if (processor.valid(record.key(), json)) {
+        Whitelist whitelist = new Whitelist();
+        whitelist.setApiId(userMessage.getId());
+        //消息存到redis
+        processor.afterConsume(record.key(), json);
       }
     } catch (Exception e) {
       processor.onError(json, e);
@@ -41,17 +44,7 @@ public class UserConsumer {
       //手动提交
       ack.acknowledge();
     }
-  }
 
-  /**
-   * 处理业务逻辑
-   */
-  private void execute(UserMessage userMessage) {
-    Whitelist whitelist = new Whitelist();
-    whitelist.setApiId(userMessage.getKey());
-    if (whitelistMapper.insert(whitelist) == 0) {
-      throw new DataValidationException("consume failed.");
-    }
   }
 
 }

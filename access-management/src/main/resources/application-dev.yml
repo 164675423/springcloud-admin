@@ -55,8 +55,12 @@ management:
         include: '*'
 application:
   kafka:
-    topics:
-      user: dev-am-user
+    producer:
+      topics:
+        user: dev-am-user
+    consumer:
+      topics:
+        user: dev-am-user
 feign:
   client:
     config:

@@ -1,11 +1,9 @@
 package com.zh.am.domain.dto.user;
 
-import com.zh.am.mq.Message;
-
 /**
  * 用于mq传输的用户信息
  */
-public class UserMessage extends Message {
+public class UserMessage {
   private String id;
   private String name;
   private String username;
