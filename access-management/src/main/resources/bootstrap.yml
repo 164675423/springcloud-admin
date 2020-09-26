@@ -1,0 +1,14 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: access-management
+  cloud:
+    nacos:
+      discovery:
+        server-addr: http://111.229.165.30:8848
+        namespace: dev
+      config:
+        file-extension: yaml
+        server-addr: http://111.229.165.30:8848
+        namespace: dev
