@@ -10,6 +10,8 @@ import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.KafkaAdmin;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.listener.DeadLetterPublishingRecoverer;
+import org.springframework.kafka.listener.SeekToCurrentErrorHandler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -74,7 +76,7 @@ public class KafkaTopicConfig {
     ConcurrentKafkaListenerContainerFactory factory = new ConcurrentKafkaListenerContainerFactory();
     factory.setConsumerFactory(consumerFactory);
     // 最大重试次数3次
-//    factory.setErrorHandler(new SeekToCurrentErrorHandler(new DeadLetterPublishingRecoverer(kafkaTemplate), 3));
+    factory.setErrorHandler(new SeekToCurrentErrorHandler(new DeadLetterPublishingRecoverer(kafkaTemplate), 3));
     return factory;
   }
 }
