@@ -3,7 +3,7 @@ package com.zh.gateway;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @date 2020/2/18
  */
 @SpringBootApplication
-@EnableEurekaClient
+@EnableDiscoveryClient
 @EnableTransactionManagement
 @MapperScan("com.zh.gateway.authentication.dao")
 public class GatewayApplication {
