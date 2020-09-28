@@ -19,12 +19,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class AccessManagementApplicationTests {
+  private static final ExecutorService fixedThreadPool = Executors.newFixedThreadPool(20);
   @Autowired
   private StringRedisTemplate stringRedisTemplate;
   @Autowired
@@ -35,8 +38,14 @@ public class AccessManagementApplicationTests {
   private IUserProducer userProducer;
 
   @Test
-  public void kafka() {
-    userProducer.addOrUpdateUser(new com.zh.am.domain.entity.User());
+  public void testKafka() {
+    for (int i = 200; i <= 300; i++) {
+      com.zh.am.domain.entity.User user = new com.zh.am.domain.entity.User();
+      user.setId("" + i);
+      user.setName("name" + i);
+      userProducer.addOrUpdateUser(user);
+    }
+
   }
 
   @Test

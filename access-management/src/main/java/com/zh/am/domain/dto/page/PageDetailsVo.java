@@ -4,10 +4,10 @@ import com.zh.am.domain.dto.role.OperationDto;
 
 import java.util.List;
 
-public class PageDetailsVO {
+public class PageDetailsVo {
   private String id;
   private String name;
-  private List<PageDetailsVO> items;
+  private List<PageDetailsVo> items;
   private List<OperationDto> operations;
 
   public String getId() {
@@ -26,11 +26,11 @@ public class PageDetailsVO {
     this.name = name;
   }
 
-  public List<PageDetailsVO> getItems() {
+  public List<PageDetailsVo> getItems() {
     return items;
   }
 
-  public void setItems(List<PageDetailsVO> items) {
+  public void setItems(List<PageDetailsVo> items) {
     this.items = items;
   }
 

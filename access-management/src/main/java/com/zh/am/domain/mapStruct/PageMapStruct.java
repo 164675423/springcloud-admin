@@ -1,7 +1,7 @@
 package com.zh.am.domain.mapStruct;
 
 import com.zh.am.domain.dto.page.GetPageOutput;
-import com.zh.am.domain.dto.page.PageDetailsVO;
+import com.zh.am.domain.dto.page.PageDetailsVo;
 import com.zh.am.domain.dto.page.PageVo;
 import com.zh.am.domain.dto.page.UserPageDto;
 import com.zh.am.domain.dto.role.OperationDto;
@@ -28,5 +28,5 @@ public interface PageMapStruct {
 
   List<PageVo> dtoToPageVOList(List<GetPageOutput> pageDTOList);
 
-  PageDetailsVO dtoToPageDetailsVO(GetPageOutput pageDTO);
+  PageDetailsVo dtoToPageDetailsVO(GetPageOutput pageDTO);
 }

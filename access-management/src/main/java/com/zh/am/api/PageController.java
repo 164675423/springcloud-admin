@@ -3,7 +3,7 @@ package com.zh.am.api;
 import com.zh.am.authentication.LoginUser;
 import com.zh.am.common.contract.ResponseBodyWrapper;
 import com.zh.am.domain.dto.page.GetPageOutput;
-import com.zh.am.domain.dto.page.PageDetailsVO;
+import com.zh.am.domain.dto.page.PageDetailsVo;
 import com.zh.am.domain.dto.page.PageVo;
 import com.zh.am.domain.mapStruct.PageMapStruct;
 import com.zh.am.service.IPageService;
@@ -57,7 +57,7 @@ public class PageController {
   public ResponseBodyWrapper getPages(@PathVariable String id,
                                       @RequestAttribute LoginUser user) {
     List<GetPageOutput> pagesDTO = pageService.getPageDetailsByPageId(id, user.getId());
-    PageDetailsVO pageDetailsVO = pageMapStruct.dtoToPageDetailsVO(pagesDTO.get(0));
+    PageDetailsVo pageDetailsVO = pageMapStruct.dtoToPageDetailsVO(pagesDTO.get(0));
     return ResponseBodyWrapper.from(pageDetailsVO);
   }
 }

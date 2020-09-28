@@ -38,7 +38,7 @@ public class UserProducer implements IUserProducer {
       kafkaTemplate.send(topic, UUID.randomUUID().toString(), JacksonUtils.parse(message)).get();
       logger.info("kafka 发送消息,key:{} ,value:{}", key, JacksonUtils.parse(message));
     } catch (InterruptedException | ExecutionException e) {
-      logger.info("kafka 发送消息失败,{},{}", e.getCause(), e.getMessage());
+      logger.error("kafka 发送消息失败,{},{}", e.getCause(), e.getMessage());
       throw new DataValidationException("kafka error. ");
     }
   }

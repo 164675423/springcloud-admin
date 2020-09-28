@@ -26,7 +26,7 @@ public class UserConsumer {
 
   @KafkaListener(topics = "${application.kafka.consumer.topics.user}")
   @Transactional(rollbackFor = Exception.class)
-  public void listen(ConsumerRecord<String, String> record, Acknowledgment ack) {
+  public void listen(ConsumerRecord<String, String> record, Acknowledgment ack) throws InterruptedException {
     String json = new String(record.value().getBytes(), Charset.forName("utf-8"));
     log.info("kafka收到消息,key:{} ,value:{}", record.key(), json);
     try {
@@ -42,6 +42,7 @@ public class UserConsumer {
       processor.onError(json, e);
     } finally {
       //手动提交
+      Thread.sleep(200);
       ack.acknowledge();
     }
 
