@@ -1,8 +1,8 @@
 package com.zh.am.domain.dto.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.zh.am.common.constant.Enums;
 import com.zh.am.domain.dto.common.IdName;
+import com.zh.common.constants.Enums;
 
 import java.util.ArrayList;
 import java.util.List;

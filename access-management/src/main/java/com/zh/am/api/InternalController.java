@@ -1,6 +1,6 @@
 package com.zh.am.api;
 
-import com.zh.am.common.contract.ResponseBodyWrapper;
+import com.zh.common.contract.ResponseBodyWrapper;
 import com.zh.am.feignclient.FileStorageClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

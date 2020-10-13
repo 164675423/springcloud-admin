@@ -1,7 +1,7 @@
 package com.zh.am.mq.consumer;
 
-import com.zh.am.common.exception.BusinessException;
 import com.zh.am.service.IRedisService;
+import com.zh.common.exception.BusinessException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

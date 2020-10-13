@@ -1,7 +1,7 @@
 package com.zh.am.aop;
 
-import com.zh.am.common.exception.AbstractException;
 import com.zh.am.util.JacksonUtils;
+import com.zh.common.exception.AbstractException;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

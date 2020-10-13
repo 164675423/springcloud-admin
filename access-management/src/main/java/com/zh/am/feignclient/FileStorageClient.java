@@ -1,10 +1,10 @@
 package com.zh.am.feignclient;
 
+import com.zh.am.config.application.FileStorageClientConfig;
 import com.zh.am.domain.dto.common.FileData;
-import com.zh.am.common.contract.ResponseBodyWrapper;
-import com.zh.am.config.FileStorageClientConfig;
-import com.zh.am.common.exception.DataValidationException;
 import com.zh.am.feignclient.fallback.FileStorageFallbackFactory;
+import com.zh.common.contract.ResponseBodyWrapper;
+import com.zh.common.exception.DataValidationException;
 import feign.Response;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.cloud.openfeign.FeignClient;

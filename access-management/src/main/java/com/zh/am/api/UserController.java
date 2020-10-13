@@ -1,10 +1,7 @@
 package com.zh.am.api;
 
 
-import com.zh.am.authentication.LoginUser;
-import com.zh.am.common.PageRequest;
 import com.zh.am.common.Paged;
-import com.zh.am.common.contract.ResponseBodyWrapper;
 import com.zh.am.domain.dto.page.PageDto;
 import com.zh.am.domain.dto.user.GetUsersInput;
 import com.zh.am.domain.dto.user.GetUsersOutput;
@@ -14,6 +11,9 @@ import com.zh.am.domain.dto.user.UpdateUserDto;
 import com.zh.am.service.IOperationService;
 import com.zh.am.service.IPageService;
 import com.zh.am.service.IUserService;
+import com.zh.common.context.LoginUser;
+import com.zh.common.contract.ResponseBodyWrapper;
+import com.zh.common.page.PageRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.validation.annotation.Validated;

@@ -1,6 +1,6 @@
 package com.zh.am.domain.dto.role;
 
-import com.zh.am.common.constant.Enums;
+import com.zh.common.constants.Enums;
 
 import java.util.ArrayList;
 import java.util.List;

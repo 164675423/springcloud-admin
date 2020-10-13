@@ -1,9 +1,10 @@
 package com.zh.am.authentication;
 
 import com.zh.am.aop.annotation.AllowAnonymous;
-import com.zh.am.common.UserContext;
 import com.zh.am.domain.dao.UserMapper;
 import com.zh.am.util.ClassUtils;
+import com.zh.common.context.LoginUser;
+import com.zh.common.context.UserContext;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

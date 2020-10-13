@@ -1,10 +1,10 @@
 package com.zh.am.mq.producer.impl;
 
-import com.zh.am.common.exception.DataValidationException;
 import com.zh.am.domain.dto.user.UserMessage;
 import com.zh.am.domain.entity.User;
 import com.zh.am.mq.producer.IUserProducer;
 import com.zh.am.util.JacksonUtils;
+import com.zh.common.exception.DataValidationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;

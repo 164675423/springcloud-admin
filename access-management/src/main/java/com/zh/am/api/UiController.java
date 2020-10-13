@@ -1,6 +1,6 @@
 package com.zh.am.api;
 
-import com.zh.am.common.contract.ResponseBodyWrapper;
+import com.zh.common.contract.ResponseBodyWrapper;
 import com.zh.am.service.IRoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

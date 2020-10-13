@@ -1,7 +1,7 @@
 package com.zh.am.feignclient.fallback;
 
 import com.zh.am.domain.dto.common.FileData;
-import com.zh.am.common.contract.ResponseBodyWrapper;
+import com.zh.common.contract.ResponseBodyWrapper;
 import com.zh.am.feignclient.FileStorageClient;
 import feign.Response;
 import feign.hystrix.FallbackFactory;

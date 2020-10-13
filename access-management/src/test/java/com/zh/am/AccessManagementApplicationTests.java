@@ -39,13 +39,17 @@ public class AccessManagementApplicationTests {
 
   @Test
   public void testKafka() {
-    for (int i = 200; i <= 300; i++) {
-      com.zh.am.domain.entity.User user = new com.zh.am.domain.entity.User();
-      user.setId("" + i);
-      user.setName("name" + i);
-      userProducer.addOrUpdateUser(user);
-    }
+    ArrayList<com.zh.am.domain.entity.User> users = new ArrayList<>();
+    com.zh.am.domain.entity.User user = new com.zh.am.domain.entity.User();
 
+    users.add(user);
+    user.setName("get");
+    testUser(user);
+    users.forEach(System.out::println);
+  }
+
+  private void testUser(com.zh.am.domain.entity.User user) {
+    user.setId("2222");
   }
 
   @Test

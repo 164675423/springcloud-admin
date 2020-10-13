@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns="http://maven.apache.org/POM/4.0.0"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.zh</groupId>
-  <artifactId>admin</artifactId>
-  <packaging>pom</packaging>
-  <version>1.0.0</version>
-  <name>springboot-admin</name>
+    <groupId>com.zh</groupId>
+    <artifactId>admin</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0</version>
+    <name>springboot-admin</name>
 
-  <modules>
-    <module>access-management</module>
-    <module>parent</module>
-    <module>gateway</module>
-    <module>file-storage</module>
-    <module>eureka</module>
-  </modules>
+    <modules>
+        <module>access-management</module>
+        <module>parent</module>
+        <module>gateway</module>
+        <module>file-storage</module>
+        <!--        <module>eureka</module>-->
+        <module>base-common</module>
+    </modules>
 
 </project>
