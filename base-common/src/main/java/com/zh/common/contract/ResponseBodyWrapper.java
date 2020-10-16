@@ -1,5 +1,8 @@
 package com.zh.common.contract;
 
+import lombok.ToString;
+
+@ToString
 public class ResponseBodyWrapper<T> {
   private String message;
   private T payload;
