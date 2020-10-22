@@ -131,6 +131,11 @@
                 <version>${lombok.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.apache.skywalking</groupId>
+                <artifactId>apm-toolkit-trace</artifactId>
+                <version>6.5.0</version>
+            </dependency>
+            <dependency>
                 <groupId>com.zh</groupId>
                 <artifactId>base-common</artifactId>
                 <version>1.0.0</version>

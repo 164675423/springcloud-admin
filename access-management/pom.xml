@@ -150,6 +150,10 @@
             <groupId>com.zh</groupId>
             <artifactId>base-common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.apache.skywalking</groupId>
+            <artifactId>apm-toolkit-trace</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
