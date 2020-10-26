@@ -10,16 +10,16 @@
 <img src="https://gitee.com/sowho.github.io/springboot-admin/raw/develop/doc/1.png"/>
 
 #### 项目结构
-* access-management 为权限管理，包含用户角色资源等，提供REST api
-* eureka 为注册中心，进行服务发现与注册 （切换为nacos）
-* gateway 为api网关入口，进行统一的身份认证及鉴权
-* file-storage 为文件服务，提供文件上传下载及存储功能
-* health 为健康检查项目，收集autuator参数 (功能和skywalking重复，移除)
-* web-client 为前端展示项目 
+├── access-management  -- 权限管理，包含用户角色资源等
+├── base-common -- 工具类等公用
+├── gateway -- 基于Spring Cloud Gateway的微服务API网关服务
+├── file-storage -- 文件服务，支持local/ftp/fastdfs
+├── parent -- maven pom依赖版本管理
+├── web-client -- 前端演示项目
 
 #### 如何运行
 * 后端:
-       分别启动 eureka，gateway，access-management，如果需要debug可以访问 localhost:{port}/swagger-ui.html
+       注册中心需自行搭建，调整各个服务中的bootstrap.yml文件，分别启动 gateway，access-management，如果需要debug可以访问 localhost:{port}/swagger-ui.html
 * 前端:  
     * 1.执行 yarn install 安装依赖  
     * 2.调整 webpack.dev.js 中的代理地址为后端网关地址
