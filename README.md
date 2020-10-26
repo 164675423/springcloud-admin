@@ -3,7 +3,11 @@
 #### 介绍
 本项目是一个前后端分离的管理系统，采用当前流行的技术开发，后端使用SpringBoot2.1，SpringCloud，结合Mybatis-plus，Redis，Kafka...等常用组件,前端采用React，Redux，Ant design构建的单页应用
 
+* 线上项目 http://118.178.254.170/
 * 目前已实现用户管理及授权管理，做到按钮级的动态权限控制
+
+#### 架构图
+<img src="https://gitee.com/sowho.github.io/springboot-admin/blob/develop/doc/1.png"/>
 
 #### 项目结构
 * access-management 为权限管理，包含用户角色资源等，提供REST api
