@@ -7,7 +7,7 @@
 * 目前已实现用户管理及授权管理，做到按钮级的动态权限控制
 
 #### 架构图
-<img src="https://gitee.com/sowho.github.io/springboot-admin/blob/develop/doc/1.png"/>
+<img src="https://gitee.com/sowho.github.io/springboot-admin/raw/develop/doc/1.png"/>
 
 #### 项目结构
 * access-management 为权限管理，包含用户角色资源等，提供REST api
