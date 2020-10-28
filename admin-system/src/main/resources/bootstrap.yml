@@ -4,7 +4,7 @@ spring:
   profiles:
     active: dev
   application:
-    name: system
+    name: admin-system
   cloud:
     nacos:
       discovery:

@@ -1,8 +1,8 @@
-package com.zh.am.aop;
+package com.zh.common.log.aspect;
 
 import com.zh.common.exception.AbstractException;
+import com.zh.common.log.aspect.annotation.ApiLog;
 import com.zh.common.util.JacksonUtils;
-import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -15,21 +15,22 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 @Slf4j
-public class ApiOperationAspect {
+public class ApiLogAspect {
 
-  @Pointcut("@annotation(io.swagger.annotations.ApiOperation)")
+  @Pointcut("@annotation(com.zh.common.log.aspect.annotation.ApiLog)")
   public void pointCut() {
   }
 
   @Around(value = "pointCut()")
   public Object proceed(ProceedingJoinPoint joinPoint) throws Throwable {
-    Object object = null;
+    Object object;
     Object[] args = joinPoint.getArgs();
     MethodSignature signature = (MethodSignature) joinPoint.getSignature();
     String operationValue = getApiOperationValue(signature);
     try {
       object = joinPoint.proceed();
     } catch (AbstractException e) {
+      //TODO 使用spring event
       log.info("{} --- ,请求参数:{} --- 业务异常:{}", operationValue, JacksonUtils.parse(args), e.getMessage());
       throw e;
     } catch (Exception e) {
@@ -45,13 +46,21 @@ public class ApiOperationAspect {
   }
 
   private String getApiOperationValue(MethodSignature signature) {
-    ApiOperation apiOperation = signature.getMethod().getAnnotation(ApiOperation.class);
+    ApiLog apiOperation = signature.getMethod().getAnnotation(ApiLog.class);
     String declaringTypeName = signature.getDeclaringTypeName();
     String methodName = signature.getMethod().getName();
-    String apiDesc = "";
+    String api = "";
+    String description = "";
     if (apiOperation != null && StringUtils.isNotBlank(apiOperation.value())) {
-      apiDesc = apiOperation.value();
+      api = apiOperation.value();
+      description = apiOperation.description();
     }
-    return declaringTypeName + "." + methodName + ":" + apiDesc;
+    return declaringTypeName
+        .concat(".")
+        .concat(methodName)
+        .concat(":")
+        .concat(api)
+        .concat("----")
+        .concat(description);
   }
 }

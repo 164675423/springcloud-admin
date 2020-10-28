@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@FeignClient(name = "fileStorage", configuration = FileStorageClientConfig.class,
+@FeignClient(name = "admin-file-storage", configuration = FileStorageClientConfig.class,
     fallbackFactory = FileStorageFallbackFactory.class)
 public interface FileStorageClient {
   /**

@@ -4,7 +4,7 @@ spring:
   profiles:
     active: dev
   application:
-    name: file-storage
+    name: admin-file-storage
   cloud:
     nacos:
       discovery:
