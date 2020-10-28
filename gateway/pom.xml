@@ -73,6 +73,10 @@
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.zh</groupId>
+            <artifactId>base-common</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

@@ -102,6 +102,10 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>com.zh</groupId>
+            <artifactId>base-common</artifactId>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>

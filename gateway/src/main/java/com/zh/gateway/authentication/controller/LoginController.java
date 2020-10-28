@@ -1,8 +1,8 @@
 package com.zh.gateway.authentication.controller;
 
+import com.zh.common.contract.ResponseBodyWrapper;
 import com.zh.gateway.authentication.auth.DefaultTokenService;
 import com.zh.gateway.authentication.auth.LoginUser;
-import com.zh.gateway.authentication.auth.ResponseBodyWrapper;
 import com.zh.gateway.authentication.dto.LoginDto;
 import com.zh.gateway.authentication.entity.User;
 import com.zh.gateway.authentication.service.IAuthenticationService;
@@ -59,7 +59,7 @@ public class LoginController {
     String jwt = tokenService.createJwt(user.getId(), expireMinutes);
     ResponseEntity<Object> responseEntity = ResponseEntity.status(HttpStatus.OK)
         .header(HttpHeaders.SET_COOKIE, tokenService.getAuthCookie(jwt, 60 * expireMinutes).toString())
-        .body(ResponseBodyWrapper.from("login success", loginUser));
+        .body(ResponseBodyWrapper.from(loginUser, "login success"));
     return responseEntity;
   }
 

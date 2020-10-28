@@ -1,6 +1,6 @@
-package com.zh.am.util;
+package com.zh.common.util;
 
-import com.github.pagehelper.util.StringUtil;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -119,7 +119,7 @@ public class ClassUtils {
 
   private static String getClassName(String packageName, String fileName) {
     String className = fileName.substring(0, fileName.lastIndexOf("."));
-    if (StringUtil.isNotEmpty(packageName)) {
+    if (StringUtils.isNotEmpty(packageName)) {
       className = packageName + "." + className;
     }
     return className;
@@ -127,7 +127,7 @@ public class ClassUtils {
 
   private static String getSubPackagePath(String packagePath, String filePath) {
     String subPackagePath = filePath;
-    if (StringUtil.isNotEmpty(packagePath)) {
+    if (StringUtils.isNotEmpty(packagePath)) {
       subPackagePath = packagePath + "/" + subPackagePath;
     }
     return subPackagePath;
@@ -135,7 +135,7 @@ public class ClassUtils {
 
   private static String getSubPackageName(String packageName, String filePath) {
     String subPackageName = filePath;
-    if (StringUtil.isNotEmpty(packageName)) {
+    if (StringUtils.isNotEmpty(packageName)) {
       subPackageName = packageName + "." + subPackageName;
     }
     return subPackageName;
