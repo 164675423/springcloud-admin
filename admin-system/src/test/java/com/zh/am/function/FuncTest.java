@@ -4,7 +4,9 @@ import com.zh.common.contract.ResponseBodyWrapper;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @SpringBootTest
@@ -29,6 +31,28 @@ public class FuncTest {
     //传入需要调用的函数
     ResponseBodyWrapper wrapper = resultInvoker.build(() -> getData(req)).invoke("p1", "p2");
     System.out.println(wrapper.toString());
+  }
+
+  @Test
+  public void test2() {
+    String phone = "182";
+    ArrayList<String> strings = new ArrayList<>();
+    strings.add("184");
+    strings.add("183");
+    strings.add("184");
+
+    if (strings.stream().anyMatch(r -> r.equals(phone))) {
+      System.out.println("11111");
+    }
+    if (strings.size() != strings.stream().distinct().count()) {
+      System.out.println("22222");
+    }
+  }
+
+  private void func(String param, Function<String, ResponseBodyWrapper> fun) {
+    Function<String, ResponseBodyWrapper> function = (str) -> ResponseBodyWrapper.from("func is " + str, "");
+
+    fun.apply(param);
   }
 
   /**

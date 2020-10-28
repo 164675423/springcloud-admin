@@ -3,9 +3,9 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <groupId>com.zh</groupId>
-    <artifactId>base-common</artifactId>
+    <artifactId>admin-common</artifactId>
     <version>1.0.0</version>
-    <name>base-common</name>
+    <name>admin-common</name>
 
     <modelVersion>4.0.0</modelVersion>
 

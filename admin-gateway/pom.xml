@@ -5,15 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.zh</groupId>
-        <artifactId>parent</artifactId>
+        <artifactId>admin-parent</artifactId>
         <version>1.0.0</version>
-        <relativePath>../parent/pom.xml</relativePath>
+        <relativePath>../admin-parent/pom.xml</relativePath>
     </parent>
     <groupId>com.zh</groupId>
-    <artifactId>gateway</artifactId>
+    <artifactId>admin-gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>gateway</name>
-    <description>Demo project for Spring Boot</description>
+    <name>admin-gateway</name>
+    <description>API网关</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -75,12 +75,12 @@
         </dependency>
         <dependency>
             <groupId>com.zh</groupId>
-            <artifactId>base-common</artifactId>
+            <artifactId>admin-common</artifactId>
         </dependency>
     </dependencies>
 
     <build>
-        <finalName>gateway</finalName>
+        <finalName>admin-gateway</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

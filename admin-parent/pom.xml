@@ -12,8 +12,8 @@
     </parent>
 
     <groupId>com.zh</groupId>
-    <artifactId>parent</artifactId>
-    <name>parent</name>
+    <artifactId>admin-parent</artifactId>
+    <name>admin-parent</name>
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
@@ -137,7 +137,7 @@
             </dependency>
             <dependency>
                 <groupId>com.zh</groupId>
-                <artifactId>base-common</artifactId>
+                <artifactId>admin-common</artifactId>
                 <version>1.0.0</version>
             </dependency>
         </dependencies>

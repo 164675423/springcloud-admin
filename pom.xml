@@ -12,12 +12,11 @@
     <name>springboot-admin</name>
 
     <modules>
-        <module>access-management</module>
-        <module>parent</module>
-        <module>gateway</module>
-        <module>file-storage</module>
-        <!--        <module>eureka</module>-->
-        <module>base-common</module>
+        <module>admin-system</module>
+        <module>admin-parent</module>
+        <module>admin-gateway</module>
+        <module>admin-file-storage</module>
+        <module>admin-common</module>
     </modules>
 
 </project>
