@@ -1,6 +1,7 @@
 package com.zh.gateway.authentication.controller;
 
 import com.zh.common.contract.ResponseBodyWrapper;
+import com.zh.common.log.aspect.annotation.ApiLog;
 import com.zh.gateway.authentication.auth.DefaultTokenService;
 import com.zh.gateway.authentication.auth.LoginUser;
 import com.zh.gateway.authentication.dto.LoginDto;
@@ -47,6 +48,7 @@ public class LoginController {
    * @return
    */
   @PostMapping(value = "login")
+  @ApiLog("用户登录")
   public ResponseEntity login(@RequestBody @Validated LoginDto loginDto) {
     User user = authenticationService.login(loginDto.getUsername().toLowerCase());
     if (user == null || !passwordEncoder.matches(loginDto.getPassword(), user.getPassword())) {
@@ -68,6 +70,7 @@ public class LoginController {
    *
    * @return
    */
+  @ApiLog("用户退出")
   @RequestMapping(value = "logout")
   public ResponseEntity logout() {
     return ResponseEntity.status(HttpStatus.OK)

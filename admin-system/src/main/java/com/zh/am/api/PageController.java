@@ -7,6 +7,7 @@ import com.zh.am.domain.mapStruct.PageMapStruct;
 import com.zh.am.service.IPageService;
 import com.zh.common.context.LoginUser;
 import com.zh.common.contract.ResponseBodyWrapper;
+import com.zh.common.log.aspect.annotation.ApiLog;
 import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,6 +37,7 @@ public class PageController {
    * @return resultInfo
    */
   @GetMapping()
+  @ApiLog("获取page列表")
   public ResponseBodyWrapper getPages(@RequestParam(required = false) Integer maxLevel,
                                       @RequestAttribute LoginUser user) {
     //方便计算返回结构中的 itemCount 或 operationCount
@@ -54,6 +56,7 @@ public class PageController {
    * @return 指定页面的信息
    */
   @GetMapping(value = "{id}")
+  @ApiLog("获取page详情")
   public ResponseBodyWrapper getPages(@PathVariable String id,
                                       @RequestAttribute LoginUser user) {
     List<GetPageOutput> pagesDTO = pageService.getPageDetailsByPageId(id, user.getId());

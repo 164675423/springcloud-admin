@@ -20,6 +20,7 @@
         <lombok.version>1.18.10</lombok.version>
         <commons-lang3.version>3.6</commons-lang3.version>
         <spring.boot.version>2.1.8.RELEASE</spring.boot.version>
+        <skywalking.version>8.1.0</skywalking.version>
     </properties>
 
     <dependencies>
@@ -62,6 +63,11 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
             <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.skywalking</groupId>
+            <artifactId>apm-toolkit-trace</artifactId>
+            <version>${skywalking.version}</version>
         </dependency>
     </dependencies>
 

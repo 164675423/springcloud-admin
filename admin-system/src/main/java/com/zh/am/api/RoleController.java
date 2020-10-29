@@ -11,6 +11,7 @@ import com.zh.am.service.IRoleService;
 import com.zh.common.constants.Enums;
 import com.zh.common.context.LoginUser;
 import com.zh.common.contract.ResponseBodyWrapper;
+import com.zh.common.log.aspect.annotation.ApiLog;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.validation.annotation.Validated;
@@ -45,6 +46,7 @@ public class RoleController {
 
   @ApiOperation("获取角色列表")
   @GetMapping()
+  @ApiLog("获取角色列表")
   public ResponseBodyWrapper getRoles(@RequestParam(value = "status", required = false) Integer status) {
     if (status == null) {
       status = Enums.BaseDataStatus.有效.getIndex();
@@ -55,6 +57,7 @@ public class RoleController {
 
   @ApiOperation("新增角色")
   @PostMapping
+  @ApiLog("新增角色")
   public ResponseBodyWrapper add(@RequestBody @Validated SaveRoleDto saveRoleDTO,
                                  @RequestAttribute LoginUser user) {
     roleService.save(saveRoleDTO, user);
@@ -63,6 +66,7 @@ public class RoleController {
 
   @ApiOperation("修改角色")
   @PutMapping(value = "{id}")
+  @ApiLog("修改角色")
   public ResponseBodyWrapper edit(@PathVariable String id, @RequestBody @Validated SaveRoleDto editRoleDto,
                                   @RequestAttribute LoginUser user) {
     roleService.edit(id, editRoleDto, user);
@@ -71,6 +75,7 @@ public class RoleController {
 
   @ApiOperation("作废角色")
   @PutMapping(value = "{id}/abandon")
+  @ApiLog("作废角色")
   public ResponseBodyWrapper abandon(@PathVariable String id, @RequestAttribute LoginUser user) {
     roleService.abandon(id, user);
     return ResponseBodyWrapper.from("成功");

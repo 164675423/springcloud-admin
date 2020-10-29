@@ -1,11 +1,12 @@
 package com.zh.storage.api;
 
 import com.google.common.base.Strings;
+import com.zh.common.contract.ResponseBodyWrapper;
+import com.zh.common.exception.BusinessException;
+import com.zh.common.log.aspect.annotation.ApiLog;
 import com.zh.storage.constant.Enums;
 import com.zh.storage.domain.vo.FileVO;
-import com.zh.storage.exception.BusinessException;
 import com.zh.storage.service.FileStorageService;
-import com.zh.storage.web.contract.ResponseBodyWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.core.io.InputStreamResource;
@@ -39,6 +40,7 @@ public class FileController {
   }
 
   @ApiOperation("获取文件信息")
+  @ApiLog("获取文件信息")
   @GetMapping(value = "{id}")
   public ResponseEntity<InputStreamResource> getFile(@PathVariable String id) throws IOException {
     List<FileVO> files = fileStorageService.getFiles(id);
@@ -87,6 +89,7 @@ public class FileController {
 
   @ApiOperation(value = "上传文件信息")
   @PostMapping
+  @ApiLog("上传文件信息")
   public ResponseBodyWrapper<List<FileVO>> uploadFiles(@RequestParam(value = "type", required = false) Integer type,
                                                        @RequestParam(value = "file") MultipartFile... files) throws IOException {
     if (files.length == 0) {
@@ -101,6 +104,7 @@ public class FileController {
 
   @ApiOperation(value = "删除文件")
   @DeleteMapping("{id}")
+  @ApiLog("删除文件")
   public ResponseBodyWrapper delete(@PathVariable String... id) throws IOException {
     fileStorageService.deleteFiles(id);
     return new ResponseBodyWrapper("success");

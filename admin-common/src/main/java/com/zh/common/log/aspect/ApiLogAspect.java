@@ -2,6 +2,9 @@ package com.zh.common.log.aspect;
 
 import com.zh.common.exception.AbstractException;
 import com.zh.common.log.aspect.annotation.ApiLog;
+import com.zh.common.log.publisher.BizExceptionPublisher;
+import com.zh.common.log.publisher.InternalExceptionPublisher;
+import com.zh.common.log.publisher.NormalPublisher;
 import com.zh.common.util.JacksonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -10,10 +13,8 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.stereotype.Component;
 
 @Aspect
-@Component
 @Slf4j
 public class ApiLogAspect {
 
@@ -25,23 +26,25 @@ public class ApiLogAspect {
   public Object proceed(ProceedingJoinPoint joinPoint) throws Throwable {
     Object object;
     Object[] args = joinPoint.getArgs();
+    //方法签名
     MethodSignature signature = (MethodSignature) joinPoint.getSignature();
     String operationValue = getApiOperationValue(signature);
+    //api的入参
+    String input = JacksonUtils.parse(args);
     try {
       object = joinPoint.proceed();
-    } catch (AbstractException e) {
-      //TODO 使用spring event
-      log.info("{} --- ,请求参数:{} --- 业务异常:{}", operationValue, JacksonUtils.parse(args), e.getMessage());
-      throw e;
     } catch (Exception e) {
-      log.info("{} --- ,请求参数:{} --- 系统异常:{}", operationValue, JacksonUtils.parse(args), e.getMessage());
+      //对异常进行处理，可用于系统分析
+      if (e instanceof AbstractException) {
+        BizExceptionPublisher.publish((AbstractException) e, operationValue, input);
+      } else {
+        InternalExceptionPublisher.publish(e, operationValue, input);
+      }
       throw e;
-    } finally {
-      //TODO 记录异常日志，用于业务分析
-
     }
     String result = JacksonUtils.parse(object);
-    log.info("{} --- ,请求参数:{} --- 返回值:{}", operationValue, JacksonUtils.parse(args), result);
+    //无异常情况下记录访问日志
+    NormalPublisher.publish(operationValue, input, result);
     return object;
   }
 
@@ -60,7 +63,7 @@ public class ApiLogAspect {
         .concat(methodName)
         .concat(":")
         .concat(api)
-        .concat("----")
+        .concat(",")
         .concat(description);
   }
 }
