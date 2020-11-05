@@ -21,6 +21,7 @@
         <commons-lang3.version>3.6</commons-lang3.version>
         <spring.boot.version>2.1.8.RELEASE</spring.boot.version>
         <skywalking.version>8.1.0</skywalking.version>
+        <hutool-version>5.4.7</hutool-version>
     </properties>
 
     <dependencies>
@@ -68,6 +69,11 @@
             <groupId>org.apache.skywalking</groupId>
             <artifactId>apm-toolkit-trace</artifactId>
             <version>${skywalking.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool-version}</version>
         </dependency>
     </dependencies>
 

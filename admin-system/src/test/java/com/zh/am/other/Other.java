@@ -7,6 +7,5 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class Other {
   @Test
   public void test() {
-    
   }
 }

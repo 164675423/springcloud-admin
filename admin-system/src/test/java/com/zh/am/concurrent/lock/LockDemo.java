@@ -8,7 +8,6 @@ public class LockDemo {
 
   @Test
   public void test() {
-
   }
 
 }
