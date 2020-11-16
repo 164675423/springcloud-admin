@@ -1,6 +1,6 @@
 package com.zh.am.mq.consumer;
 
-import com.zh.am.service.IRedisService;
+import com.zh.am.service.RedisService;
 import com.zh.common.exception.BusinessException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,11 +10,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class Processor {
   private static final String PREFIX = "kafka:message:";
-  private final IRedisService redisService;
+  private final RedisService redisService;
   @Value("${spring.kafka.consumer.group-id}")
   private String group;
 
-  public Processor(IRedisService redisService) {
+  public Processor(RedisService redisService) {
     this.redisService = redisService;
   }
 

@@ -7,7 +7,7 @@ package com.zh.am.service;
  * @author zh
  * @date 2020/4/12
  */
-public interface IRedisService {
+public interface RedisService {
   /**
    * 存储数据
    */

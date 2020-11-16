@@ -1,5 +1,13 @@
-package com.zh.am.config.third;
+package com.zh.common.redis;
 
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.redisson.Redisson;
+import org.redisson.api.RedissonClient;
+import org.redisson.config.Config;
+import org.redisson.config.SingleServerConfig;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
@@ -16,6 +24,8 @@ import java.io.Serializable;
  * @date 2020/4/12
  */
 @Configuration
+@EnableConfigurationProperties(RedissonProperties.class)
+@Slf4j
 public class RedisConfig {
 
   /**
@@ -45,5 +55,34 @@ public class RedisConfig {
 
     redisTemplate.setConnectionFactory(lettuceConnectionFactory);
     return redisTemplate;
+  }
+
+  /**
+   * 单机模式
+   *
+   * @param redissonProperties
+   * @return
+   */
+  @Bean
+  @ConditionalOnProperty(name = "spring.redisson.enable", havingValue = "true")
+  public RedissonClient redissonClient(RedissonProperties redissonProperties) {
+    String redisPrefix = "redis://";
+    Config config = new Config();
+    SingleServerConfig serverConfig = config.useSingleServer()
+        .setAddress(redisPrefix + redissonProperties.getAddress())
+        .setTimeout(redissonProperties.getTimeout())
+        .setConnectionPoolSize(redissonProperties.getConnectionPoolSize())
+        .setConnectionMinimumIdleSize(redissonProperties.getConnectionMinimumIdleSize());
+    if (StringUtils.isNotBlank(redissonProperties.getPassword())) {
+      serverConfig.setPassword(redissonProperties.getPassword());
+    }
+    return Redisson.create(config);
+  }
+
+  @Bean
+  public RedissonLockUtil redissLockUtil(RedissonClient redissonClient) {
+    RedissonLockUtil redissonLockUtil = new RedissonLockUtil();
+    redissonLockUtil.setRedissonClient(redissonClient);
+    return redissonLockUtil;
   }
 }

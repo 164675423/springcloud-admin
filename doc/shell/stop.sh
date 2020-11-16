@@ -19,7 +19,7 @@ fi
 
 echo -e "Stopping the ${PWD} ...\c"
 for PID in $PIDS ; do
-  kill -9 $PID
+  kill -2 $PID
 done
 
 COUNT=0

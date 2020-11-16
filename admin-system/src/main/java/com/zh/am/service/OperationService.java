@@ -6,6 +6,6 @@ import com.zh.am.domain.entity.Operation;
 
 import java.util.List;
 
-public interface IOperationService extends IService<Operation> {
+public interface OperationService extends IService<Operation> {
   List<GetUserOperationsDto> getOperationsByUserId(String userId);
 }

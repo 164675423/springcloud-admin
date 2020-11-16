@@ -1,6 +1,5 @@
-package com.zh.am.common.exception.handler;
+package com.zh.common.exception.handler;
 
-import com.netflix.hystrix.exception.HystrixBadRequestException;
 import com.zh.common.exception.BusinessException;
 import com.zh.common.exception.DataValidationException;
 import org.springframework.http.HttpStatus;
@@ -23,11 +22,6 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler(value = DataValidationException.class)
   public ResponseEntity<ErrorInfo> dataValidationExceptionHandler(DataValidationException e) {
-    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorInfo(e.getMessage()));
-  }
-
-  @ExceptionHandler(value = HystrixBadRequestException.class)
-  public ResponseEntity<ErrorInfo> hystrixBadRequestExceptionHandler(HystrixBadRequestException e) {
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorInfo(e.getMessage()));
   }
 

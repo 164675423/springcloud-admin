@@ -10,7 +10,7 @@ import com.zh.common.context.LoginUser;
 import java.util.List;
 
 
-public interface IRoleService extends IService<Role> {
+public interface RoleService extends IService<Role> {
   List<IdName> getRoleIdName();
 
   List<RoleDto> getRoles(Integer status);

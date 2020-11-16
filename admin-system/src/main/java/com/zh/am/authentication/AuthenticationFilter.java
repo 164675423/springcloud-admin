@@ -36,7 +36,6 @@ public class AuthenticationFilter extends OncePerRequestFilter {
       throws ServletException, IOException {
     String userId = httpServletRequest.getHeader(header);
     logger.info("{} {}", httpServletRequest.getMethod(), httpServletRequest.getRequestURI());
-    logger.trace("authentication filter -> user: {}, ", userId);
     if (StringUtils.isNotBlank(userId)) {
       LoginUser loginUser = userMapper.getLoginUser(userId);
       if (loginUser == null) {

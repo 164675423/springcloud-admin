@@ -9,7 +9,7 @@ import com.zh.am.domain.dto.page.UserPageDto;
 import com.zh.am.domain.entity.Operation;
 import com.zh.am.domain.entity.Page;
 import com.zh.am.domain.mapStruct.PageMapStruct;
-import com.zh.am.service.IPageService;
+import com.zh.am.service.PageService;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StopWatch;
 
@@ -22,7 +22,7 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 @Service
-public class PageServiceImpl extends ServiceImpl<PageMapper, Page> implements IPageService {
+public class PageServiceImpl extends ServiceImpl<PageMapper, Page> implements PageService {
   private final PageMapper pageMapper;
   private final PageMapStruct pageMapStruct;
   private final OperationMapper operationMapper;

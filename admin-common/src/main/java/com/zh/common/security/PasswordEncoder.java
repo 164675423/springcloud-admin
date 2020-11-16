@@ -1,8 +1,9 @@
-package com.zh.am.authentication;
+package com.zh.common.security;
 
 import org.springframework.security.crypto.codec.Base64;
 import org.springframework.security.crypto.keygen.BytesKeyGenerator;
 import org.springframework.security.crypto.keygen.KeyGenerators;
+import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
@@ -19,6 +20,7 @@ import static org.springframework.security.crypto.util.EncodingUtils.subArray;
  * @author zh
  * @date 2020/3/1
  */
+@Component
 public class PasswordEncoder implements org.springframework.security.crypto.password.PasswordEncoder {
   private static final String PBKDF2_ALGORITHM = "PBKDF2WithHmacSHA256";
   private static final int DEFAULT_SALT_SIZE = 128 / 8;

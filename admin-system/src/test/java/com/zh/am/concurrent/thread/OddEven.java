@@ -53,5 +53,6 @@ public class OddEven {
       }
     }, "偶数线程").start();
 
+    System.out.println("main stop");
   }
 }

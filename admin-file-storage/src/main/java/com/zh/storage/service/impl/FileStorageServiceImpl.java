@@ -1,10 +1,10 @@
 package com.zh.storage.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.zh.common.exception.DataValidationException;
 import com.zh.storage.dao.FileMapper;
-import com.zh.storage.domain.vo.FileVO;
 import com.zh.storage.domain.entity.File;
-import com.zh.storage.exception.DataValidationException;
+import com.zh.storage.domain.vo.FileVO;
 import com.zh.storage.service.FileStorageService;
 import com.zh.storage.service.StorageProvider;
 import org.springframework.stereotype.Service;

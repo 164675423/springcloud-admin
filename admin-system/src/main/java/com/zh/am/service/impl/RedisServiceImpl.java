@@ -1,13 +1,13 @@
 package com.zh.am.service.impl;
 
-import com.zh.am.service.IRedisService;
+import com.zh.am.service.RedisService;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.TimeUnit;
 
 @Service
-public class RedisServiceImpl implements IRedisService {
+public class RedisServiceImpl implements RedisService {
   private final StringRedisTemplate stringRedisTemplate;
 
   public RedisServiceImpl(StringRedisTemplate stringRedisTemplate) {

@@ -4,13 +4,13 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zh.am.domain.dao.OperationMapper;
 import com.zh.am.domain.dto.operation.GetUserOperationsDto;
 import com.zh.am.domain.entity.Operation;
-import com.zh.am.service.IOperationService;
+import com.zh.am.service.OperationService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class OperationServiceImpl extends ServiceImpl<OperationMapper, Operation> implements IOperationService {
+public class OperationServiceImpl extends ServiceImpl<OperationMapper, Operation> implements OperationService {
   private final OperationMapper operationMapper;
 
   public OperationServiceImpl(OperationMapper operationMapper) {

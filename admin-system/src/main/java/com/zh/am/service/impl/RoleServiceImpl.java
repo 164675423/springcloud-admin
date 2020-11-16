@@ -12,7 +12,7 @@ import com.zh.am.domain.entity.Page;
 import com.zh.am.domain.entity.Permission;
 import com.zh.am.domain.entity.Role;
 import com.zh.am.domain.mapStruct.RoleMapStruct;
-import com.zh.am.service.IRoleService;
+import com.zh.am.service.RoleService;
 import com.zh.common.constants.Enums;
 import com.zh.common.context.LoginUser;
 import com.zh.common.exception.BusinessException;
@@ -27,7 +27,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IRoleService {
+public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements RoleService {
   private final RoleMapper roleMapper;
   private final RoleMapStruct roleMapStruct;
   private final PermissionMapper permissionMapper;

@@ -4,7 +4,7 @@ import com.zh.am.domain.dto.page.GetPageOutput;
 import com.zh.am.domain.dto.page.PageDetailsVo;
 import com.zh.am.domain.dto.page.PageVo;
 import com.zh.am.domain.mapStruct.PageMapStruct;
-import com.zh.am.service.IPageService;
+import com.zh.am.service.PageService;
 import com.zh.common.context.LoginUser;
 import com.zh.common.contract.ResponseBodyWrapper;
 import com.zh.common.log.aspect.annotation.ApiLog;
@@ -22,10 +22,10 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/pages")
 public class PageController {
-  private final IPageService pageService;
+  private final PageService pageService;
   private final PageMapStruct pageMapStruct;
 
-  public PageController(IPageService pageService, PageMapStruct pageMapStruct) {
+  public PageController(PageService pageService, PageMapStruct pageMapStruct) {
     this.pageService = pageService;
     this.pageMapStruct = pageMapStruct;
   }

@@ -6,8 +6,8 @@ import com.zh.am.domain.dto.role.RoleVo;
 import com.zh.am.domain.dto.role.SaveRoleDto;
 import com.zh.am.domain.mapStruct.PageMapStruct;
 import com.zh.am.domain.mapStruct.RoleMapStruct;
-import com.zh.am.service.IPageService;
-import com.zh.am.service.IRoleService;
+import com.zh.am.service.PageService;
+import com.zh.am.service.RoleService;
 import com.zh.common.constants.Enums;
 import com.zh.common.context.LoginUser;
 import com.zh.common.contract.ResponseBodyWrapper;
@@ -32,12 +32,12 @@ import java.util.Map;
 @RestController
 @RequestMapping("api/v1/roles")
 public class RoleController {
-  private final IRoleService roleService;
+  private final RoleService roleService;
   private final RoleMapStruct roleMapStruct;
   private final PageMapStruct pageMapStruct;
-  private final IPageService pageService;
+  private final PageService pageService;
 
-  public RoleController(IRoleService roleService, RoleMapStruct roleMapStruct, PageMapStruct pageMapStruct, IPageService pageService) {
+  public RoleController(RoleService roleService, RoleMapStruct roleMapStruct, PageMapStruct pageMapStruct, PageService pageService) {
     this.roleService = roleService;
     this.roleMapStruct = roleMapStruct;
     this.pageMapStruct = pageMapStruct;
@@ -83,6 +83,7 @@ public class RoleController {
 
   @ApiOperation("修改角色权限以外的信息.")
   @PutMapping(value = "{id}/info")
+  @ApiLog("修改角色权限以外的信息")
   public ResponseBodyWrapper info(@PathVariable String id, @RequestBody Map map,
                                   @RequestAttribute LoginUser user) {
     roleService.editRoleInfo(id, map.get("name").toString(), user);
@@ -91,6 +92,7 @@ public class RoleController {
 
   @ApiOperation("获取角色详情")
   @GetMapping(value = "{id}")
+  @ApiLog("获取角色详情")
   public ResponseBodyWrapper getRoleDetails(@PathVariable String id) {
     RoleVo roleVO = roleMapStruct.dtoToVO(roleService.getRole(id));
     List<GetPageOutput> pagesDto = pageService.getPagesByRoleId(id);

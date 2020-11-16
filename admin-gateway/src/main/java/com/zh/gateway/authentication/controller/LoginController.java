@@ -6,7 +6,7 @@ import com.zh.gateway.authentication.auth.DefaultTokenService;
 import com.zh.gateway.authentication.auth.LoginUser;
 import com.zh.gateway.authentication.dto.LoginDto;
 import com.zh.gateway.authentication.entity.User;
-import com.zh.gateway.authentication.service.IAuthenticationService;
+import com.zh.gateway.authentication.service.AuthenticationService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -32,10 +32,10 @@ public class LoginController {
   private DefaultTokenService tokenService;
   @Value("${security.oauth2.resource.jwt.expire-minutes}")
   private Long expireMinutes;
-  private IAuthenticationService authenticationService;
+  private AuthenticationService authenticationService;
   private PasswordEncoder passwordEncoder;
 
-  public LoginController(DefaultTokenService tokenService, IAuthenticationService authenticationService, PasswordEncoder passwordEncoder) {
+  public LoginController(DefaultTokenService tokenService, AuthenticationService authenticationService, PasswordEncoder passwordEncoder) {
     this.tokenService = tokenService;
     this.authenticationService = authenticationService;
     this.passwordEncoder = passwordEncoder;

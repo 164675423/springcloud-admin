@@ -7,7 +7,7 @@ import com.zh.am.domain.entity.Page;
 
 import java.util.List;
 
-public interface IPageService extends IService<Page> {
+public interface PageService extends IService<Page> {
   List<UserPageDto> getUserPages(String userId);
 
   List<String> getPageIdsByRoleId(String roleId);

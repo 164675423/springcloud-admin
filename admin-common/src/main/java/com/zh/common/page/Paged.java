@@ -1,4 +1,4 @@
-package com.zh.am.common;
+package com.zh.common.page;
 
 import com.github.pagehelper.Page;
 

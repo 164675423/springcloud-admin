@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.zh.am.common.Paged;
 import com.zh.am.domain.dao.RoleMapper;
 import com.zh.am.domain.dao.UserMapper;
 import com.zh.am.domain.dao.UserRoleMapper;
@@ -18,11 +17,12 @@ import com.zh.am.domain.entity.Role;
 import com.zh.am.domain.entity.User;
 import com.zh.am.domain.entity.UserRole;
 import com.zh.am.domain.mapStruct.UserMapStruct;
-import com.zh.am.service.IUserService;
+import com.zh.am.service.UserService;
 import com.zh.common.constants.Enums;
 import com.zh.common.context.LoginUser;
 import com.zh.common.exception.BusinessException;
 import com.zh.common.page.PageRequest;
+import com.zh.common.page.Paged;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,7 +33,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
-public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
   private final PasswordEncoder passwordEncoder;
   private final UserMapper userMapper;
   private final RoleMapper roleMapper;
