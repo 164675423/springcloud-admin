@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Bean;
  * @author zh
  * @date 2020/5/1
  */
-public class FileStorageClientConfig {
+public class DefaultFeignClientConfig {
   @Bean
   public Encoder encoder(ObjectFactory<HttpMessageConverters> messageConverters) {
     return new FeignSpringFormEncoder(new SpringEncoder(messageConverters));

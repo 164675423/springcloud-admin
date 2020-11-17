@@ -36,7 +36,7 @@ import static springfox.documentation.builders.PathSelectors.regex;
 @Configuration
 @EnableSwagger2
 @Import(BeanValidatorPluginsConfiguration.class)
-@Profile({"dev", "test"})
+@Profile({"dev", "test", "local"})
 public class SwaggerConfig {
   public static final String DEFAULT_INCLUDE_PATTERN = "/api/.*";
   public static final String AUTHORIZATION_HEADER = "X-USER-ID";

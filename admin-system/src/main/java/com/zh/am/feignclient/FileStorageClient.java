@@ -1,8 +1,7 @@
 package com.zh.am.feignclient;
 
-import com.zh.am.config.application.FileStorageClientConfig;
+import com.zh.am.config.application.DefaultFeignClientConfig;
 import com.zh.am.domain.dto.common.FileData;
-import com.zh.am.feignclient.fallback.FileStorageFallbackFactory;
 import com.zh.common.base.contract.ResponseBodyWrapper;
 import com.zh.common.base.exception.DataValidationException;
 import feign.Response;
@@ -28,8 +27,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@FeignClient(name = "admin-file-storage", configuration = FileStorageClientConfig.class,
-    fallbackFactory = FileStorageFallbackFactory.class)
+@FeignClient(name = "admin-file-storage", configuration = DefaultFeignClientConfig.class)
 public interface FileStorageClient {
   /**
    * 获取文件
