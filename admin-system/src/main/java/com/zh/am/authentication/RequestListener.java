@@ -1,6 +1,6 @@
 package com.zh.am.authentication;
 
-import com.zh.common.context.UserContext;
+import com.zh.common.base.context.UserContext;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletRequestEvent;

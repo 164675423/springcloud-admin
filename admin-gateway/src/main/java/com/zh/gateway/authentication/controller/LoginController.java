@@ -1,6 +1,6 @@
 package com.zh.gateway.authentication.controller;
 
-import com.zh.common.contract.ResponseBodyWrapper;
+import com.zh.common.base.contract.ResponseBodyWrapper;
 import com.zh.common.log.aspect.annotation.ApiLog;
 import com.zh.gateway.authentication.auth.DefaultTokenService;
 import com.zh.gateway.authentication.auth.LoginUser;

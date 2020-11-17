@@ -1,8 +1,8 @@
 package com.zh.am.feignclient.fallback;
 
 import com.zh.am.domain.dto.common.FileData;
-import com.zh.common.contract.ResponseBodyWrapper;
 import com.zh.am.feignclient.FileStorageClient;
+import com.zh.common.base.contract.ResponseBodyWrapper;
 import feign.Response;
 import feign.hystrix.FallbackFactory;
 import org.slf4j.Logger;

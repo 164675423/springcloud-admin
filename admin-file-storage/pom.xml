@@ -103,12 +103,20 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>com.zh</groupId>
-            <artifactId>admin-common</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.apache.skywalking</groupId>
             <artifactId>apm-toolkit-trace</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.zh</groupId>
+            <artifactId>admin-common-base</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.zh</groupId>
+            <artifactId>admin-common-log</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.zh</groupId>
+            <artifactId>admin-common-mybatis</artifactId>
         </dependency>
     </dependencies>
     <dependencyManagement>

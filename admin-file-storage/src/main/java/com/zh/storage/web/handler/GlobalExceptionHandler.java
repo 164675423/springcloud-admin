@@ -1,7 +1,7 @@
 package com.zh.storage.web.handler;
 
-import com.zh.common.exception.BusinessException;
-import com.zh.common.exception.DataValidationException;
+import com.zh.common.base.exception.BusinessException;
+import com.zh.common.base.exception.DataValidationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

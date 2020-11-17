@@ -1,12 +1,13 @@
 package com.zh.am.config.application;
 
 import com.google.common.collect.Lists;
-import com.zh.common.context.LoginUser;
-import com.zh.common.contract.ResponseBodyWrapper;
+import com.zh.common.base.context.LoginUser;
+import com.zh.common.base.contract.ResponseBodyWrapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Profile;
 import springfox.bean.validators.configuration.BeanValidatorPluginsConfiguration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -35,6 +36,7 @@ import static springfox.documentation.builders.PathSelectors.regex;
 @Configuration
 @EnableSwagger2
 @Import(BeanValidatorPluginsConfiguration.class)
+@Profile({"dev", "test"})
 public class SwaggerConfig {
   public static final String DEFAULT_INCLUDE_PATTERN = "/api/.*";
   public static final String AUTHORIZATION_HEADER = "X-USER-ID";

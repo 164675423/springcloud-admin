@@ -1,8 +1,8 @@
 package com.zh.am.authentication;
 
 import com.zh.am.domain.dao.UserMapper;
-import com.zh.common.context.LoginUser;
-import com.zh.common.context.UserContext;
+import com.zh.common.base.context.LoginUser;
+import com.zh.common.base.context.UserContext;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

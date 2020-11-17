@@ -1,7 +1,7 @@
 package com.zh.storage.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.zh.common.exception.DataValidationException;
+import com.zh.common.base.exception.DataValidationException;
 import com.zh.storage.dao.FileMapper;
 import com.zh.storage.domain.entity.File;
 import com.zh.storage.domain.vo.FileVO;

@@ -4,7 +4,7 @@ import cn.hutool.core.util.IdUtil;
 import com.zh.am.domain.entity.Api;
 import com.zh.am.service.ApiService;
 import com.zh.am.service.RedisService;
-import com.zh.common.redis.RedissonLockUtil;
+import com.zh.common.redis.util.RedissonLockUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;

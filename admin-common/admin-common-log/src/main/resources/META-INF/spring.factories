@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.zh.common.log.config.LogConfiguration,\
+  com.zh.common.base.util.SpringUtils

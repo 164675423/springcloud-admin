@@ -7,9 +7,9 @@ import com.zh.am.domain.dto.user.InsertUserDto;
 import com.zh.am.domain.dto.user.UpdatePasswordDto;
 import com.zh.am.domain.dto.user.UpdateUserDto;
 import com.zh.am.domain.entity.User;
-import com.zh.common.context.LoginUser;
-import com.zh.common.page.PageRequest;
-import com.zh.common.page.Paged;
+import com.zh.common.base.context.LoginUser;
+import com.zh.common.base.page.PageRequest;
+import com.zh.common.base.page.Paged;
 
 public interface UserService extends IService<User> {
   void insert(InsertUserDto input, LoginUser loginUser);

@@ -1,7 +1,7 @@
 package com.zh.am.api;
 
 import com.zh.am.service.RoleService;
-import com.zh.common.contract.ResponseBodyWrapper;
+import com.zh.common.base.contract.ResponseBodyWrapper;
 import com.zh.common.log.aspect.annotation.ApiLog;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

@@ -2,7 +2,7 @@ package com.zh.am.config.application;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.zh.common.constants.ISO8601Format;
+import com.zh.common.base.constants.ISO8601Format;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;

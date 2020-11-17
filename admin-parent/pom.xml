@@ -31,6 +31,7 @@
         <skywalking.version>8.1.0</skywalking.version>
         <hutool-version>5.4.7</hutool-version>
         <redisson-version>3.13.6</redisson-version>
+        <admin.common.version>1.0.0</admin.common.version>
     </properties>
 
     <dependencyManagement>
@@ -144,11 +145,6 @@
                 <version>1.0.0</version>
             </dependency>
             <dependency>
-                <groupId>org.apache.skywalking</groupId>
-                <artifactId>apm-toolkit-trace</artifactId>
-                <version>${skywalking.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool-version}</version>
@@ -157,6 +153,26 @@
                 <groupId>org.redisson</groupId>
                 <artifactId>redisson</artifactId>
                 <version>${redisson-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zh</groupId>
+                <artifactId>admin-common-base</artifactId>
+                <version>${admin.common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zh</groupId>
+                <artifactId>admin-common-log</artifactId>
+                <version>${admin.common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zh</groupId>
+                <artifactId>admin-common-mybatis</artifactId>
+                <version>${admin.common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zh</groupId>
+                <artifactId>admin-common-redis</artifactId>
+                <version>${admin.common.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

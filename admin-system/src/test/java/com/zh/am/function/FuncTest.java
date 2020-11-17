@@ -1,6 +1,6 @@
 package com.zh.am.function;
 
-import com.zh.common.contract.ResponseBodyWrapper;
+import com.zh.common.base.contract.ResponseBodyWrapper;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

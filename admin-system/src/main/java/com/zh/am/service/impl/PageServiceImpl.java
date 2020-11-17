@@ -76,7 +76,7 @@ public class PageServiceImpl extends ServiceImpl<PageMapper, Page> implements Pa
     //TODO redis
     List<Operation> operations = operationMapper.getOperationByRole(roleId);
 
-    // 由 role 直接关联的 page 作为叶子结点构造整棵树
+    // 由 role 直接关联的 com.zh.commom.base.page 作为叶子结点构造整棵树
     List<Page> childPages = pageMapper.getPageByRole(roleId);
     List<Page> allPages = getAllSortedPages(childPages);
 

@@ -21,7 +21,7 @@ public class GetPageOutput {
   /**
    * 添加节点集合.
    *
-   * @param pageDto page
+   * @param pageDto com.zh.commom.base.page
    */
   public void add(GetPageOutput pageDto) {
     if (items == null) {

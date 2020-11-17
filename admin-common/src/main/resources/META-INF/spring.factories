@@ -1,6 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.zh.common.log.config.LogConfiguration,\
-  com.zh.common.util.SpringUtils,\
-  com.zh.common.exception.handler.GlobalExceptionHandler,\
-  com.zh.common.security.PasswordEncoder,\
-  com.zh.common.redis.RedisConfig

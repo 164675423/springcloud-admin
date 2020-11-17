@@ -3,7 +3,7 @@ package com.zh.am.mq.consumer;
 import com.zh.am.domain.dao.WhitelistMapper;
 import com.zh.am.domain.dto.user.UserMessage;
 import com.zh.am.domain.entity.Whitelist;
-import com.zh.common.util.JacksonUtils;
+import com.zh.common.base.util.JacksonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;

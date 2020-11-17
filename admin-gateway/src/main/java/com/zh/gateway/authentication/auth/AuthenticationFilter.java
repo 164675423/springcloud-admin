@@ -30,7 +30,6 @@ import java.nio.charset.StandardCharsets;
 @Component
 public class AuthenticationFilter implements GlobalFilter, Ordered {
   public final DefaultTokenService tokenService;
-  private final String authCookie = "token";
   private final Logger logger = LoggerFactory.getLogger(AuthenticationFilter.class);
 
   @Value("${security.oauth2.resource.jwt.expire-minutes}")

@@ -1,6 +1,6 @@
 package com.zh.storage.config;
 
-import com.zh.common.contract.ResponseBodyWrapper;
+import com.zh.common.base.contract.ResponseBodyWrapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.zh.common.base.exception.handler.GlobalExceptionHandler,\
+  com.zh.common.base.security.PasswordEncoder

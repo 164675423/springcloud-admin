@@ -1,8 +1,8 @@
 package com.zh.storage.api;
 
 import com.google.common.base.Strings;
-import com.zh.common.contract.ResponseBodyWrapper;
-import com.zh.common.exception.BusinessException;
+import com.zh.common.base.contract.ResponseBodyWrapper;
+import com.zh.common.base.exception.BusinessException;
 import com.zh.common.log.aspect.annotation.ApiLog;
 import com.zh.storage.constant.Enums;
 import com.zh.storage.domain.vo.FileVO;
@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -107,5 +108,12 @@ public class FileController {
   public ResponseBodyWrapper delete(@PathVariable String... id) throws IOException {
     fileStorageService.deleteFiles(id);
     return new ResponseBodyWrapper("success");
+  }
+
+  @ApiLog("hello")
+  @GetMapping("hello")
+  public ResponseBodyWrapper hello(HttpServletRequest request) {
+    System.out.println(request.getHeaderNames());
+    return new ResponseBodyWrapper("hello");
   }
 }

@@ -1,7 +1,7 @@
 package com.zh.am.config.feign;
 
 import com.netflix.hystrix.exception.HystrixBadRequestException;
-import com.zh.common.util.JacksonUtils;
+import com.zh.common.base.util.JacksonUtils;
 import feign.Response;
 import feign.Util;
 import feign.codec.ErrorDecoder;

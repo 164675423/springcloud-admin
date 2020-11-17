@@ -1,7 +1,7 @@
 package com.zh.am.concurrent.thread;
 
 import com.zh.am.domain.dao.UserMapper;
-import com.zh.common.context.LoginUser;
+import com.zh.common.base.context.LoginUser;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
