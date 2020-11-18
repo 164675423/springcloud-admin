@@ -109,6 +109,12 @@
         <dependency>
             <groupId>com.zh</groupId>
             <artifactId>admin-common-base</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-web</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.zh</groupId>

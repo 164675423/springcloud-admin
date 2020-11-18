@@ -18,7 +18,6 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler(value = {BusinessException.class, DataValidationException.class})
   public ResponseEntity<ErrorInfo> exceptionHandler(RuntimeException e) {
-    e.printStackTrace();
     if (e instanceof BusinessException) {
       BusinessException exception = (BusinessException) e;
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorInfo(exception.getCode(), exception.getMessage()));
@@ -27,6 +26,11 @@ public class GlobalExceptionHandler {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorInfo(exception.getCode(), exception.getMessage()));
     }
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorInfo(e.getMessage()));
+  }
+
+  @ExceptionHandler(value = {Exception.class})
+  public ResponseEntity<ErrorInfo> defaultExceptionHandler(Exception e) {
+    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorInfo(e.getMessage()));
   }
 
   protected class ErrorInfo {
