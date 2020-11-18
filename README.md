@@ -1,4 +1,4 @@
-# springboot-admin
+# springcloud-admin
 
 #### 介绍
 
@@ -10,11 +10,11 @@
 
 #### 架构图
 
-<img src="https://gitee.com/sowho.github.io/springboot-admin/raw/develop/doc/1.png"/>
+<img src="https://github.com/164675423/springcloud-admin/raw/develop/doc/1.png"/>
 
 #### 项目结构
 
-springboot-admin  
+springcloud-admin  
 ├── admin-system  -- 权限管理，包含用户角色资源等   
 ├── admin-common -- 公用模块  
 ├── admin-gateway -- 网关服务  

@@ -9,7 +9,7 @@
     <artifactId>admin</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0</version>
-    <name>springboot-admin</name>
+    <name>springcloud-admin</name>
 
     <modules>
         <module>admin-system</module>

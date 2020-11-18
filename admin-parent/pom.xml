@@ -32,6 +32,7 @@
         <hutool-version>5.4.7</hutool-version>
         <redisson-version>3.13.6</redisson-version>
         <admin.common.version>1.0.0</admin.common.version>
+        <transmittable-thread-local.version>2.11.5</transmittable-thread-local.version>
     </properties>
 
     <dependencyManagement>
@@ -174,6 +175,12 @@
                 <artifactId>admin-common-redis</artifactId>
                 <version>${admin.common.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>transmittable-thread-local</artifactId>
+                <version>${transmittable-thread-local.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
