@@ -27,7 +27,7 @@
         <jackson.version>2.9.8</jackson.version>
         <lombok.version>1.18.10</lombok.version>
         <commons-lang3.version>3.6</commons-lang3.version>
-        <spring.boot.version>2.1.8.RELEASE</spring.boot.version>
+        <spring.boot.version>2.5.12</spring.boot.version>
         <skywalking.version>8.1.0</skywalking.version>
         <hutool-version>5.4.7</hutool-version>
         <pagehelper-spring-boot.version>1.2.5</pagehelper-spring-boot.version>
