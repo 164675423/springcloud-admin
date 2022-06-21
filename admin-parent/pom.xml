@@ -22,7 +22,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <org.mapstruct.version>1.2.0.Final</org.mapstruct.version>
-        <mysql.connector.version>5.1.44</mysql.connector.version>
+        <mysql.connector.version>8.0.28</mysql.connector.version>
         <mybatis-spring-boot.version>2.1.0</mybatis-spring-boot.version>
         <pagehelper-spring-boot.version>1.2.5</pagehelper-spring-boot.version>
         <mybatis-plus-boot.version>3.3.0</mybatis-plus-boot.version>
